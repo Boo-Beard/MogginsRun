@@ -20,7 +20,7 @@
 	  <br>
         <h1>Moggins Runner</h1>
         <ul>
-          <li><a href="javascript:void(0)" class="button play">Start</a></li>
+          <li><a href="javascript:void(0)" class="button play">Play</a></li>
 		  <div class="social-buttons">
   <a href="https://t.me/your_telegram_link" target="_blank">
     <button class="social-button">Telegram</button>
