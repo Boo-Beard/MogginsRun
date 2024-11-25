@@ -143,7 +143,7 @@ a {
 }
 
 #main h1 {
-  font-size: 90px; /* Bigger text for more impact */
+  font-size: 100px; /* Bigger text for more impact */
   font-weight: bold;
   background: linear-gradient(90deg, 
     #ff0080, /* Neon Pink */
@@ -168,39 +168,58 @@ a {
   height: auto;
   z-index: 1; /* Make sure it stays above other elements */
 }
-/* General Button Styling */
 .button {
   display: block;
-  width: 200px; /* Adjust the width to fit larger screens */
-  margin: 10px auto; /* Center the buttons with some space around */
-  height: 60px; /* Increase the height for better touch target */
-  line-height: 60px; /* Vertically center the text within the button */
-  border: 1px solid #AA2666;
+  width: 220px; /* Slightly wider for more visual impact */
+  margin: 15px auto; /* Center the buttons with more spacing */
+  height: 70px; /* Increase the height for a chunkier, retro feel */
+  line-height: 70px; /* Center the text vertically */
+  border: 2px solid #FF1493; /* Neon pink border for extra punch */
   color: white;
   font-weight: bold;
-  font-size: 24px; /* Make text larger for better readability */
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  background-color: #FB1886;
-  background-image: -webkit-linear-gradient(bottom, #FB1886 0%, #B30D5D 100%);
-  background-image: linear-gradient(to bottom, #FB1886 0%, #B30D5D 100%);
-  border-radius: 5px;
+  font-size: 26px; /* Larger font for readability */
+  font-family: 'Press Start 2P', cursive; /* Retro pixel-like font for the vibe */
+  text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FF1493, 0 0 30px #FF1493, 0 0 40px #00FFFF; /* Neon glow effect */
+  background: linear-gradient(145deg, #00FFC6, #FF1493); /* Vibrant gradient background */
+  border-radius: 10px; /* More rounded edges for retro-modern look */
   cursor: pointer;
-  padding: 0 20px; /* Add horizontal padding for larger clickable area */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover */
-  text-align: center; /* Ensures text is centered horizontally */
+  padding: 0 25px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+  position: relative; /* Needed for glowing animations */
+  overflow: hidden; /* Prevents background animations from spilling out */
 }
 
+/* Add hover effects */
 .button:hover {
-  background-color: #B30D5D;
-  background-image: -webkit-linear-gradient(bottom, #B30D5D 0%, #FB1886 100%);
-  background-image: linear-gradient(to bottom, #B30D5D 0%, #FB1886 100%);
-  transform: scale(1.05); /* Slightly enlarge the button on hover */
+  background: linear-gradient(145deg, #FF1493, #00FFC6); /* Reverse the gradient on hover */
+  transform: scale(1.1); /* Slightly enlarge for feedback */
+  box-shadow: 0 0 20px #FF1493, 0 0 30px #00FFFF, 0 0 40px #FFFFFF; /* Enhanced neon glow */
 }
 
-/* Button Focus (for accessibility) */
+/* Add focus effects for accessibility */
 .button:focus {
   outline: none;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2); /* Outline for accessibility when focused */
+  box-shadow: 0 0 10px 2px #00FFFF, 0 0 20px 2px #FF1493; /* Glow effect for focus */
+}
+
+/* Add a cool shimmer effect */
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start shimmer effect off-screen */
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: skewX(-45deg);
+  transition: 0.5s;
+  z-index: 1; /* Ensure it's above the button background */
+}
+
+.button:hover::before {
+  left: 100%; /* Move the shimmer effect across the button */
+  transition: 0.5s;
 }
 
 /* Mobile-Specific Button Styling (with media queries) */
