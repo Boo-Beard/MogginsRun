@@ -1,11 +1,11 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // Your Telegram Bot Token (from BotFather)
-const token = 7541390569:AAFIz_a2Ezihb2QA-Ut94SM2_xUsWcg7H1Q;  // Replace with your bot's token
+const token = '7541390569:AAFIz_a2Ezihb2QA-Ut94SM2_xUsWcg7H1Q';  // Replace with your bot's token
 const bot = new TelegramBot(token, { polling: true });
 
 // URL of the game hosted on GitHub Pages
-const webAppUrl = https://boo-beard.github.io/MogginsRun/;  // Replace with your game URL
+const webAppUrl = 'https://boo-beard.github.io/MogginsRun/';  // Replace with your game URL
 
 // Handle the "/start" command
 bot.onText(/\/start/, (msg) => {

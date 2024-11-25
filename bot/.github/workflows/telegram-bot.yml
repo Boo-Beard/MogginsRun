@@ -3,23 +3,24 @@ name: Telegram Bot
 on:
   push:
     branches:
-      - main  # Trigger the bot when there is a push to the "main" branch
+      - main  # Trigger on push to the main branch
+  workflow_dispatch:  # Allows manual triggering from the GitHub UI
 
 jobs:
   bot:
-    runs-on: ubuntu-latest  # GitHub will use a hosted Ubuntu runner
+    runs-on: ubuntu-latest  # GitHub uses a hosted Ubuntu environment
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2  # Check out the code in the repository
+      uses: actions/checkout@v2  # Checkout the repo to the action
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  # Specify the Node.js version
+        node-version: '14'  # You can specify other versions if needed
 
     - name: Install dependencies
       run: npm install  # Install dependencies from package.json
 
     - name: Run Telegram bot
-      run: npm start  # Start the bot
+      run: npm start  # Start the bot script
