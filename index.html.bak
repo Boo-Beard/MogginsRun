@@ -51,7 +51,7 @@
       <p>STFU and update to a modern browser such as <a href="www.google.com/chrome/‎">Google Chrome</a> to play.</p>
     </canvas>
     <div id="game-over">
-      <h2>You ran <span id="score"></span> meters,You little bitch! </h2>
+      <h2>You only ran <span id="score"></span> meters,You little bitch! </h2>
       <a href="javascript:void(0)" class="button restart">Try again?</a>
     </div>
   </div>
