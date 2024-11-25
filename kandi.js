@@ -9,9 +9,9 @@ var ground = [], water = [], enemies = [], environment = [];
 
 // platform variables
 var platformHeight, platformLength, gapLength;
-var platformWidth = 64;
+var platformWidth = 32;
 var platformBase = canvas.height - platformWidth;  // bottom row of the game
-var platformSpacer = 128;
+var platformSpacer = 64;
 
 var canUseLocalStorage = 'localStorage' in window && window.localStorage !== null;
 var playSound;
@@ -386,7 +386,7 @@ var player = (function(player) {
   // jumping
   player.gravity   = 1;
   player.dy        = 0;
-  player.jumpDy    = -10;
+  player.jumpDy    = -16;
   player.isFalling = false;
   player.isJumping = false;
 
@@ -547,24 +547,24 @@ function getType() {
 /**
  * Update all ground position and draw. Also check for collision against the player.
  */
-function updateGround() {
-  // animate ground
-  player.isFalling = true;
-  for (var i = 0; i < ground.length; i++) {
-    ground[i].update();
-    ground[i].draw();
+  function updateGround() {
+        // animate ground
+        player.isFalling = true;
+        for (var i = 0; i < ground.length; i++) {
+            ground[i].update();
+            ground[i].draw();
 
-    // stop the player from falling when landing on a platform
-    var angle;
-    if (player.minDist(ground[i]) <= player.height/2 + platformWidth/2 &&
-        (angle = Math.atan2(player.y - ground[i].y, player.x - ground[i].x) * 180/Math.PI) > -130 &&
-        angle < -50) {
-      player.isJumping = false;
-      player.isFalling = false;
-      player.y = ground[i].y - player.height + 5;
-      player.dy = 0;
-    }
-  }
+            // stop the player from falling when landing on a platform
+            var angle;
+            if (player.minDist(ground[i]) <= player.height/2 + 32 && // Adjusted collision detection for narrower platforms
+                (angle = Math.atan2(player.y - ground[i].y, player.x - ground[i].x) * 180/Math.PI) > -130 &&
+                angle < -50) {
+                player.isJumping = false;
+                player.isFalling = false;
+                player.y = ground[i].y - player.height + 5;
+                player.dy = 0;
+            }
+        }
 
   // remove ground that have gone off screen
   if (ground[0] && ground[0].x < -platformWidth) {
