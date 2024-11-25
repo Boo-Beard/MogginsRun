@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta charset="UTF-8">
   <title>Moggins Runner</title>
   <link rel="stylesheet" href="kandi.css" type="text/css" media="screen">
-  <script src="jquery.2.1.1.min.js" defer></script>
-  <script src="kandi.js" defer></script>
+  <script type="text/javascript" src="jquery.2.1.1.min.js"></script>
 </head>
 <body>
   <div class="wrapper">
-    <button class="sound sound-off" aria-label="Toggle sound"></button>
-    <main id="menu">
-      <section id="progress">
+    <div class="sound sound-off"></div>
+    <div id="menu">
+      <div id="progress">
         <div id="percent">Downloading: <span id="p"></span></div>
-        <progress id="progress-bar" value="0" max="100"></progress>
-      </section>
-      <section id="main">
-        <img src="imgs/headlogo.png" alt="Game Logo" id="game-logo" loading="lazy" />
+        <progress id="progress-bar" value="0"></progress>
+      </div>
+      <div id="main">
+	  <br>
         <h1>Moggins Runner</h1>
         <ul>
-          <li><button class="button play" onclick="startGame()">Start</button></li>
-          <li><button class="button credits" onclick="showCredits()">Info</button></li>
+          <li><a href="javascript:void(0)" class="button play">Start</a></li>
+          <li><a href="javascript:void(0)" class="button credits">Info</a></li>
         </ul>
-      </section>
-      <section id="credits" hidden>
+      </div>
+      <div id="credits">
         <ul>
+		   <ul>
+        </ul>
+        <ul>
+		<br>
+		<br>
+		<br>
+		<br>
           <li class="artwork">Web: <a href="http://www.google.com/">Web</a></li>
-          <li class="artwork">TG: <a href="http://www.google.com/">TG</a></li>
+          <li class="artwork">TG<a href="http://www.google.com/">TG</a></li>
           <li class="artwork">DexTools: <a href="http://www.google.com/">Dextools</a></li>
+        </ul>
+        <ul>
+        </ul>
+        <ul>
           <li class="developer">Creator: <a href="http://google.com/">$Moggins</a></li>
         </ul>
-        <button class="button back" onclick="showMenu()">Back</button>
-      </section>
-    </main>
+        <a href="javascript:void(0)" class="button back">Back</a>
+      </div>
+    </div>
     <canvas id="canvas" width="800" height="480">
-      <p>Your browser does not support the required functionality to play this game. Please update to a modern browser like <a href="https://www.google.com/chrome/">Google Chrome</a>.</p>
+	
+      <p>You're browser does not support the required functionality to play this game, Bitch</p>
+      <p>STFU and update to a modern browser such as <a href="www.google.com/chrome/‎">Google Chrome</a> to play.</p>
     </canvas>
-    <section id="game-over" hidden>
-      <h2>You ran <span id="score"></span> meters! Try again?</h2>
-      <button class="button restart" onclick="restartGame()">Try again</button>
-    </section>
+    <div id="game-over">
+      <h2>You only ran <span id="score"></span> meters,You little bitch! </h2>
+      <a href="javascript:void(0)" class="button restart">Try again?</a>
+    </div>
   </div>
+  <script type="text/javascript" src="kandi.js"></script>
+  
 </body>
 </html>

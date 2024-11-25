@@ -1,4 +1,6 @@
 (function ($) {
+	
+	
 // define variables
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
@@ -25,6 +27,15 @@ if (canUseLocalStorage) {
     $('.sound').addClass('sound-off').removeClass('sound-on');
   }
 }
+// Fetch leaderboard data from Google Apps Script
+async function fetchLeaderboard() {
+  const response = await fetch('https://script.google.com/macros/s/AKfycbybY9ZvOapyvjrJ4TsOwqzJjuQb26dCICSFHd-Uj48bAtfuwRiRFhqsNRhEenmyvuk-/exec');  // Replace with the URL from Google Apps Script
+  const leaderboard = await response.text();
+  document.getElementById('leaderboard').innerText = leaderboard;
+}
+
+// Call this function to display the leaderboard when the game is loaded
+fetchLeaderboard();
 
 
 /**
@@ -379,7 +390,7 @@ var player = (function(player) {
   // add properties directly to the player imported object
   player.width     = 60;
   player.height    = 96;
-  player.speed     = 8;
+  player.speed     = 6;
 
   // jumping
   player.gravity   = 1;
@@ -432,9 +443,9 @@ player.update = function() {
     assetLoader.sounds.jump.play();
   }
 
-  // jump higher if the space bar is continually pressed
-  if (KEY_STATUS.space || touchJumpTriggered && jumpCounter) {
-    player.dy = player.jumpDy;
+  // Jump higher if spacebar is held, but only while the jump counter allows it
+  if ((KEY_STATUS.space || touchJumpTriggered) && jumpCounter > 0) {
+    player.dy = player.jumpDy; // continue to jump higher if held
   }
 
   // Decrement jump counter
@@ -918,6 +929,22 @@ $('.restart').click(function() {
   $('#game-over').hide();
   startGame();
 });
+// Function to submit the score to Google Sheets via POST request
+async function submitScore(name, score) {
+  const response = await fetch('https://script.google.com/macros/s/AKfycbybY9ZvOapyvjrJ4TsOwqzJjuQb26dCICSFHd-Uj48bAtfuwRiRFhqsNRhEenmyvuk-/exec', {
+    method: 'POST',
+    body: new URLSearchParams({
+      'name': name,
+      'score': score
+    })
+  });
+  const result = await response.text();
+  console.log(result);  // Logs 'Score added!' if successful
+}
+
+// Example usage: Submit a score
+submitScore('Player1', 150);
+
 
 assetLoader.downloadAll();
 })(jQuery);

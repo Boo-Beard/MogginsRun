@@ -1,14 +1,16 @@
+/* General Reset */
 <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
 
-<style>
-/* General Reset */
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: arial, sans-serif;
   font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   cursor: default;
   margin: 0;
@@ -20,21 +22,21 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  display: block;
   border: 1px solid black;
   z-index: 1;
+  height: auto; /* Adjust height based on width */
+  width: 100%;
+  max-width: 100%; /* Prevent the canvas from exceeding the screen width */
+  display: block;  /* Remove unwanted white spaces around the canvas */
 }
 
-/* Styling for Menu */
+
+/* Basic Styling for Menu */
 ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
-
 li {
   padding: 10px 0;
 }
@@ -45,8 +47,7 @@ a {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-/* Layout Containers */
-.wrapper, #menu, #credits {
+.wrapper {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -54,13 +55,19 @@ a {
   left: 0;
 }
 
+/* Menu Styles */
 #menu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  z-index: 2;
   text-align: center;
   background-color: grey;
-  z-index: 2;
+}
+#menu.main {
   background-image: url('imgs/menu-bg.png');
 }
-
 #menu.credits {
   background-image: url('imgs/credits-bg.png');
 }
@@ -68,21 +75,18 @@ a {
 /* Progress Bar */
 #progress {
   height: 12%;
+  margin: auto;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  margin: auto;
-  text-align: center;
 }
-
 #percent {
   color: white;
   font-weight: bold;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
-
 #progress-bar {
   width: 200px;
 }
@@ -98,12 +102,10 @@ a {
   cursor: pointer;
   z-index: 3;
 }
-
 .sound-on {
   background-image: url('imgs/soundOn.png');
   background-repeat: no-repeat;
 }
-
 .sound-off {
   background-image: url('imgs/soundOff.png');
   background-repeat: no-repeat;
@@ -111,130 +113,245 @@ a {
 
 /* Main Game Menu */
 #main {
+  display: none;
+  height: 60%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+#main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100%; /* Make sure the container takes up the full height */
   text-align: center;
-  position: relative;
+  position: relative; /* Required for absolute positioning of the image */
 }
 
 #main h1 {
-  font-size: 100px;
+  font-size: 100px; /* Bigger text for more impact */
   font-weight: bold;
-  background: linear-gradient(90deg, #ff0080, #00ffcc, #ff00ff, #ff0080, #00d2ff);
-  background-size: 400% 100%;
+  background: linear-gradient(90deg, 
+    #ff0080, /* Neon Pink */
+    #00ffcc, /* Electric Cyan */
+    #ff00ff, /* Neon Purple */
+    #ff0080, /* Neon Pink */
+    #00d2ff /* Miami Blue */
+  );
+  background-size: 400% 100%; /* Makes the gradient move more dramatically */
   color: transparent;
-  -webkit-background-clip: text;
-  animation: gradientAnimation 4s ease-in-out infinite;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.8);
-}
-
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  -webkit-background-clip: text; /* Make the gradient only affect the text */
+  animation: gradientAnimation 4s ease-in-out infinite; /* Slow down the animation for more retro effect */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.8); /* Intense glow effect */
 }
 
 #game-logo {
   position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 150px; /* Adjust to position the image where you want */
+  left: 50%; /* Center the image horizontally */
+  transform: translateX(-50%); /* Center the image exactly */
   max-width: 100%;
   height: auto;
-  z-index: 1;
+  z-index: 1; /* Make sure it stays above other elements */
 }
-
-/* Button Styling */
 .button {
   display: block;
-  width: 220px;
-  margin: 15px auto;
-  height: 70px;
-  line-height: 70px;
-  border: 2px solid #FF1493;
+  width: 220px; /* Slightly wider for more visual impact */
+  margin: 15px auto; /* Center the buttons with more spacing */
+  height: 70px; /* Increase the height for a chunkier, retro feel */
+  line-height: 70px; /* Center the text vertically */
+  border: 2px solid #FF1493; /* Neon pink border for extra punch */
   color: white;
   font-weight: bold;
-  font-size: 26px;
-  font-family: 'Bungee Shade', sans-serif;
-  text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FF1493, 0 0 30px #FF1493, 0 0 40px #00FFFF;
-  background: linear-gradient(145deg, #00FFC6, #FF1493);
-  border-radius: 10px;
+  font-size: 26px; /* Larger font for readability */
+font-family: 'Bungee Shade', sans-serif;
+  text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FF1493, 0 0 30px #FF1493, 0 0 40px #00FFFF; /* Neon glow effect */
+  background: linear-gradient(145deg, #00FFC6, #FF1493); /* Vibrant gradient background */
+  border-radius: 10px; /* More rounded edges for retro-modern look */
   cursor: pointer;
   padding: 0 25px;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
-  position: relative;
-  overflow: hidden;
+  position: relative; /* Needed for glowing animations */
+  overflow: hidden; /* Prevents background animations from spilling out */
 }
 
+/* Add hover effects */
 .button:hover {
-  background: linear-gradient(145deg, #FF1493, #00FFC6);
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #FF1493, 0 0 30px #00FFFF, 0 0 40px #FFFFFF;
+  background: linear-gradient(145deg, #FF1493, #00FFC6); /* Reverse the gradient on hover */
+  transform: scale(1.1); /* Slightly enlarge for feedback */
+  box-shadow: 0 0 20px #FF1493, 0 0 30px #00FFFF, 0 0 40px #FFFFFF; /* Enhanced neon glow */
 }
 
+/* Add focus effects for accessibility */
 .button:focus {
   outline: none;
-  box-shadow: 0 0 10px 2px #00FFFF, 0 0 20px 2px #FF1493;
+  box-shadow: 0 0 10px 2px #00FFFF, 0 0 20px 2px #FF1493; /* Glow effect for focus */
 }
 
+/* Add a cool shimmer effect */
 .button::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: -100%; /* Start shimmer effect off-screen */
   width: 300%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   transform: skewX(-45deg);
   transition: 0.5s;
-  z-index: 1;
+  z-index: 1; /* Ensure it's above the button background */
 }
 
 .button:hover::before {
-  left: 100%;
+  left: 100%; /* Move the shimmer effect across the button */
   transition: 0.5s;
 }
 
-/* Responsive Adjustments */
+/* Mobile-Specific Button Styling (with media queries) */
+
+/* For screens up to 768px (tablets and mobile devices) */
+
+/* Make buttons and text larger on mobile */
 @media (max-width: 768px) {
   .button {
     font-size: 22px;
-    width: 90%;
-    height: 60px;
+    width: 90%;  /* Make buttons nearly full width */
+    height: 60px; /* Increase button height */
   }
 
   canvas {
-    height: 80%;
-  }
-
-  #main h1, #game-over h2 {
-    font-size: 24px;
+    height: 80%; /* Let the canvas take more height on mobile */
   }
 }
 
+/* For very small screens (up to 480px) */
 @media (max-width: 480px) {
+  .button {
+    font-size: 24px;  /* Further increase font size for readability */
+    height: 70px;
+  }
+   canvas {
+    height: 70%; /* Optimize the canvas height for very small screens */
+  }
+}
+
+/* Credits */
+#credits {
+  display: none;
+  line-height: 30px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+#credits li {
+  padding: 5px 0;
+}
+
+.artwork, .music, .developer {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.artwork {
+  color: #fa8526;
+}
+.music {
+  color: #e6e71f;
+}
+.developer {
+  color: #13eb8a;
+}
+
+.back, .back:hover {
+  margin-top: 10px;
+}
+
+/* Game Over Screen */
+#game-over {
+  display: block;
+  text-align: center;
+  padding-top: 250px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  /* Adjust canvas to fit smaller screens */
   canvas {
     width: 100%;
     height: auto;
   }
 
+  /* Increase button size for touch devices */
+  .button {
+    width: 180px;  /* Wider buttons */
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px; /* Bigger text */
+  }
+
+  /* Make wrapper and menu take full screen */
+  .wrapper, #menu {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Adjust header and game-over text */
+  #main h1, #game-over h2 {
+    font-size: 24px;  /* Bigger text */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Make canvas more responsive */
+  canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Reduce font size for small screens */
+  body {
+    font-size: 14px;
+  }
+
+  /* Adjust button size for very small screens */
   .button {
     width: 200px;
     height: 60px;
-    font-size: 20px;
+    line-height: 60px;
+    font-size: 20px;  /* Even bigger text for small screens */
   }
 
+  /* Hide progress bar and credits on very small screens */
   #progress, #credits {
     display: none;
   }
 
+  /* Simplify layout for small screens */
   #game-over {
     width: 100%;
     padding-top: 20px;
   }
 }
-</style>
