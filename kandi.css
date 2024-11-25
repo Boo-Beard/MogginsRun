@@ -22,9 +22,12 @@ canvas {
   left: 0;
   border: 1px solid black;
   z-index: 1;
-  width: 100%; /* Use full width */
   height: auto; /* Adjust height based on width */
+  width: 100%;
+  max-width: 100%; /* Prevent the canvas from exceeding the screen width */
+  display: block;  /* Remove unwanted white spaces around the canvas */
 }
+
 
 /* Basic Styling for Menu */
 ul {
@@ -160,22 +163,28 @@ a {
 /* Mobile-Specific Button Styling (with media queries) */
 
 /* For screens up to 768px (tablets and mobile devices) */
+
+/* Make buttons and text larger on mobile */
 @media (max-width: 768px) {
   .button {
-    width: 280px; /* Increase the button width for tablets */
-    height: 70px; /* Increase the height for better touch target */
-    line-height: 70px; /* Center text vertically */
-    font-size: 28px; /* Increase the font size for better readability */
+    font-size: 22px;
+    width: 90%;  /* Make buttons nearly full width */
+    height: 60px; /* Increase button height */
+  }
+
+  canvas {
+    height: 80%; /* Let the canvas take more height on mobile */
   }
 }
 
-/* For screens up to 480px (smaller mobile devices) */
+/* For very small screens (up to 480px) */
 @media (max-width: 480px) {
   .button {
-    width: 320px; /* Even wider buttons on small screens */
-    height: 80px; /* Larger height for better touch target */
-    line-height: 80px; /* Center text vertically */
-    font-size: 32px; /* Much larger font size for small screens */
+    font-size: 24px;  /* Further increase font size for readability */
+    height: 70px;
+  }
+   canvas {
+    height: 70%; /* Optimize the canvas height for very small screens */
   }
 }
 

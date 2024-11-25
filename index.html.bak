@@ -56,19 +56,6 @@
     </div>
   </div>
   <script type="text/javascript" src="kandi.js"></script>
-  <script>
-  function resizeCanvas() {
-    const canvas = document.getElementById('canvas');
-    const width = window.innerWidth;  // Get the screen width
-    const height = window.innerHeight - document.getElementById('menu').offsetHeight;  // Get the screen height minus the menu height
-
-    canvas.width = width;  // Set the canvas width to the screen width
-    canvas.height = height;  // Set the canvas height to the screen height
-  }
-
-  window.onload = resizeCanvas;  // Resize when the page loads
-  window.onresize = resizeCanvas;  // Resize when the screen size changes
-</script>
-
+  
 </body>
 </html>

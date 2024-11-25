@@ -22,9 +22,12 @@ canvas {
   left: 0;
   border: 1px solid black;
   z-index: 1;
-  width: 100%; /* Use full width */
   height: auto; /* Adjust height based on width */
+  width: 100%;
+  max-width: 100%; /* Prevent the canvas from exceeding the screen width */
+  display: block;  /* Remove unwanted white spaces around the canvas */
 }
+
 
 /* Basic Styling for Menu */
 ul {
@@ -125,22 +128,23 @@ a {
 /* General Button Styling */
 .button {
   display: block;
-  width: 200px; /* Wider buttons for mobile */
-  margin: 10px auto; /* Centered and spaced out buttons */
-  height: 50px; /* Taller for easier tapping */
-  line-height: 50px; /* Vertically center text */
+  width: 200px; /* Adjust the width to fit larger screens */
+  margin: 10px auto; /* Center the buttons with some space around */
+  height: 60px; /* Increase the height for better touch target */
+  line-height: 60px; /* Vertically center the text within the button */
   border: 1px solid #AA2666;
   color: white;
   font-weight: bold;
-  font-size: 18px; /* Bigger text for easier reading on mobile */
+  font-size: 24px; /* Make text larger for better readability */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   background-color: #FB1886;
   background-image: -webkit-linear-gradient(bottom, #FB1886 0%, #B30D5D 100%);
   background-image: linear-gradient(to bottom, #FB1886 0%, #B30D5D 100%);
   border-radius: 5px;
   cursor: pointer;
-  padding: 10px;
+  padding: 0 20px; /* Add horizontal padding for larger clickable area */
   transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover */
+  text-align: center; /* Ensures text is centered horizontally */
 }
 
 .button:hover {
@@ -149,12 +153,36 @@ a {
   background-image: linear-gradient(to bottom, #B30D5D 0%, #FB1886 100%);
   transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
+
 /* Button Focus (for accessibility) */
 .button:focus {
   outline: none;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2); /* Outline for accessibility when focused */
 }
 
+/* Mobile-Specific Button Styling (with media queries) */
+
+/* For screens up to 768px (tablets and mobile devices) */
+
+/* Make buttons and text larger on mobile */
+@media (max-width: 768px) {
+  .button {
+    font-size: 22px;
+    width: 90%;  /* Make buttons nearly full width */
+    height: 60px; /* Increase button height */
+  }
+
+  canvas {
+    height: 80%; /* Let the canvas take more height on mobile */
+  }
+}
+
+/* For very small screens (up to 480px) */
+@media (max-width: 480px) {
+  .button {
+    font-size: 24px;  /* Further increase font size for readability */
+    height: 70px;
+  }
 
 /* Credits */
 #credits {
