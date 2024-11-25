@@ -1,0 +1,12 @@
+{
+  "name": "telegram-game-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot to launch game as Web App",
+  "main": "bot.js",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.53.0"
+  },
+  "scripts": {
+    "start": "node bot.js"
+  }
+}
