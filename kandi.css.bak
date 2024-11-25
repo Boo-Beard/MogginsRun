@@ -170,6 +170,7 @@ a {
   height: auto;
   z-index: 1; /* Make sure it stays above other elements */
 }
+
 .button {
   display: block;
   width: 220px; /* Slightly wider for more visual impact */
@@ -287,21 +288,19 @@ font-family: 'Bungee Shade', sans-serif;
 
 /* Game Over Screen */
 #game-over {
-  display: flex; /* Use Flexbox to center the content */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  display: block;
   text-align: center;
+  padding-top: 150px;
   z-index: 1;
   width: 100%;
   height: 100%;
-  position: absolute; /* Position absolutely to cover the entire screen */
-  top: 0;
-  left: 0;
+  position: absolute;
   font-family: 'Bungee Shade', sans-serif;
-  color: white;
+    color: white;
   font-weight: bold;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  padding: 0; /* Remove any unnecessary padding */
+
+
 }
 
 /* Media Queries for Mobile Devices */
@@ -314,7 +313,7 @@ font-family: 'Bungee Shade', sans-serif;
 
   /* Increase button size for touch devices */
   .button {
-    width: 180px; /* Wider buttons */
+    width: 180px;  /* Wider buttons */
     height: 50px;
     line-height: 50px;
     font-size: 18px; /* Bigger text */
@@ -326,47 +325,37 @@ font-family: 'Bungee Shade', sans-serif;
     height: 100%;
   }
 
-  /* Adjust font size for larger screens */
-  #game-over h1, #game-over h2 {
-    font-size: 1.75rem; /* Slightly smaller font for tablets */
+/* Default font size for larger screens */
+#main h1, #game-over h2 {
+  font-size: 2rem;  /* Larger font for larger screens */
+}
+
+/* Adjust font size for medium-sized screens (e.g., tablets) */
+@media (max-width: 768px) {
+  #main h1, #game-over h2 {
+    font-size: 1.75rem;  /* Slightly smaller font for tablets */
   }
 }
 
+/* Adjust font size for smaller screens (e.g., smartphones) */
 @media (max-width: 480px) {
-  /* Further reduce font size for smaller screens (smartphones) */
-  #game-over h1, #game-over h2 {
-    font-size: 1.25rem; /* Smaller font for small screens */
+  #main h1, #game-over h2 {
+    font-size: 1.25rem;  /* Smaller font for small screens */
   }
+}
 
-  /* Ensure canvas is fully responsive */
+
+@media (max-width: 480px) {
+  /* Make canvas more responsive */
   canvas {
     width: 100%;
     height: auto;
   }
 
-  /* Adjust font size for body */
+  /* Reduce font size for small screens */
   body {
     font-size: 14px;
   }
-
-  /* Reduce button size for small screens */
-  .button {
-    width: 200px;
-    height: 60px;
-    line-height: 60px;
-    font-size: 20px; /* Even bigger text for small screens */
-  }
-
-  /* Hide progress bar and credits on small screens */
-  #progress, #credits {
-    display: none;
-  }
-
-  /* Adjust padding for #game-over */
-  #game-over {
-    padding: 0; /* Remove extra padding */
-  }
-}
 
   /* Adjust button size for very small screens */
   .button {
