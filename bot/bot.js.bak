@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // Your Telegram Bot Token (from BotFather)
-const token = 'YOUR_BOT_TOKEN';  // Replace with your bot's token
+const token = '7541390569:AAFIz_a2Ezihb2QA-Ut94SM2_xUsWcg7H1Q';  // Replace with your bot's token
 const bot = new TelegramBot(token, { polling: true });
 
 // URL of the game hosted on GitHub Pages
