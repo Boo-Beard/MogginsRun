@@ -433,7 +433,7 @@ player.update = function() {
   }
 
   // jump higher if the space bar is continually pressed
-  if (KEY_STATUS.space || touchJumpTriggered && jumpCounter) {
+  if (KEY_STATUS.space || touchJumpTriggered) && jumpCounter) {
     player.dy = player.jumpDy;
   }
 

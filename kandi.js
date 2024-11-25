@@ -379,7 +379,7 @@ var player = (function(player) {
   // add properties directly to the player imported object
   player.width     = 60;
   player.height    = 96;
-  player.speed     = 6;
+  player.speed     = 8;
 
   // jumping
   player.gravity   = 1;
