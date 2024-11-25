@@ -9,9 +9,9 @@ var ground = [], water = [], enemies = [], environment = [];
 
 // platform variables
 var platformHeight, platformLength, gapLength;
-var platformWidth = 32;
+var platformWidth = 64;
 var platformBase = canvas.height - platformWidth;  // bottom row of the game
-var platformSpacer = 64;
+var platformSpacer = 128;
 
 var canUseLocalStorage = 'localStorage' in window && window.localStorage !== null;
 var playSound;
@@ -381,7 +381,7 @@ var player = (function(player) {
   // add properties directly to the player imported object
   player.width     = 60;
   player.height    = 96;
-  player.speed     = 6;
+  player.speed     = 7;
 
   // jumping
   player.gravity   = 1;

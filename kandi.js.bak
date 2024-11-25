@@ -9,9 +9,9 @@ var ground = [], water = [], enemies = [], environment = [];
 
 // platform variables
 var platformHeight, platformLength, gapLength;
-var platformWidth = 32;
+var platformWidth = 64;
 var platformBase = canvas.height - platformWidth;  // bottom row of the game
-var platformSpacer = 64;
+var platformSpacer = 128;
 
 var canUseLocalStorage = 'localStorage' in window && window.localStorage !== null;
 var playSound;
@@ -379,12 +379,12 @@ Vector.prototype.minDist = function(vec) {
  */
 var player = (function(player) {
   // add properties directly to the player imported object
-  player.width     = 120;
-  player.height    = 194;
-  player.speed     = 6;
+  player.width     = 60;
+  player.height    = 96;
+  player.speed     = 7;
 
   // jumping
-  player.gravity   = 1;
+  player.gravity   = 0.5;
   player.dy        = 0;
   player.jumpDy    = -10;
   player.isFalling = false;
@@ -556,7 +556,7 @@ function updateGround() {
 
     // stop the player from falling when landing on a platform
     var angle;
-    if (player.minDist(ground[i]) <= player.height/2 + platformWidth/2 &&
+    if (player.minDist(ground[i]) <= player.height/2 + platformWidth/3 &&
         (angle = Math.atan2(player.y - ground[i].y, player.x - ground[i].x) * 180/Math.PI) > -130 &&
         angle < -50) {
       player.isJumping = false;
