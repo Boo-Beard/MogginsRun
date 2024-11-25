@@ -25,40 +25,6 @@ if (canUseLocalStorage) {
     $('.sound').addClass('sound-off').removeClass('sound-on');
   }
 }
-// touch input variables
-var touchStartX = 0;
-var touchStartY = 0;
-var touchEndX = 0;
-var touchEndY = 0;
-
-// Detect touch start
-canvas.addEventListener('touchstart', function(event) {
-  touchStartX = event.touches[0].clientX;
-  touchStartY = event.touches[0].clientY;
-
-  // Check if it's a jump action by touching at the lower portion of the screen
-  if (touchStartY > canvas.height - 100) {
-    KEY_STATUS.space = true; // Simulate space key down for jumping
-  }
-
-  event.preventDefault(); // Prevent scrolling when touching
-}, false);
-
-// Detect touch end
-canvas.addEventListener('touchend', function(event) {
-  // When touch ends, simulate the release of the space key
-  KEY_STATUS.space = false;
-  event.preventDefault(); // Prevent scrolling when releasing touch
-}, false);
-
-// Detect touch move (optional, can be used for movement or other gestures)
-canvas.addEventListener('touchmove', function(event) {
-  touchEndX = event.touches[0].clientX;
-  touchEndY = event.touches[0].clientY;
-
-  // You can implement more logic here for other touch gestures, like moving the player if needed
-  event.preventDefault(); // Prevent scrolling while moving
-}, false);
 
 
 /**
@@ -436,44 +402,65 @@ var player = (function(player) {
   /**
    * Update the player's position and animation
    */
-  player.update = function() {
+  // Variable to track if jump has been triggered by touch
+let touchJumpTriggered = false;
 
-    // jump if not currently jumping or falling
-    if (KEY_STATUS.space && player.dy === 0 && !player.isJumping) {
-      player.isJumping = true;
-      player.dy = player.jumpDy;
-      jumpCounter = 12;
-      assetLoader.sounds.jump.play();
-    }
+// Add touch event listener to trigger jump on touch
+document.addEventListener('touchstart', function(event) {
+  // Trigger jump if the player is not already jumping or falling
+  if (player.dy === 0 && !player.isJumping && !touchJumpTriggered) {
+    touchJumpTriggered = true;
+    player.isJumping = true;
+    player.dy = player.jumpDy;
+    jumpCounter = 12;
+    assetLoader.sounds.jump.play();
+  }
+});
 
-    // jump higher if the space bar is continually pressed
-    if (KEY_STATUS.space && jumpCounter) {
-      player.dy = player.jumpDy;
-    }
+// Reset touch jump flag when touch ends (optional)
+document.addEventListener('touchend', function(event) {
+  touchJumpTriggered = false;
+});
 
-    jumpCounter = Math.max(jumpCounter-1, 0);
+// Player update function with both spacebar and touch control
+player.update = function() {
+  // jump if spacebar is pressed and the player is not jumping or falling
+  if ((KEY_STATUS.space || touchJumpTriggered) && player.dy === 0 && !player.isJumping) {
+    player.isJumping = true;
+    player.dy = player.jumpDy;
+    jumpCounter = 12;
+    assetLoader.sounds.jump.play();
+  }
 
-    this.advance();
+  // jump higher if the space bar is continually pressed
+  if (KEY_STATUS.space || touchJumpTriggered && jumpCounter) {
+    player.dy = player.jumpDy;
+  }
 
-    // add gravity
-    if (player.isFalling || player.isJumping) {
-      player.dy += player.gravity;
-    }
+  // Decrement jump counter
+  jumpCounter = Math.max(jumpCounter - 1, 0);
 
-    // change animation if falling
-    if (player.dy > 0) {
-      player.anim = player.fallAnim;
-    }
-    // change animation is jumping
-    else if (player.dy < 0) {
-      player.anim = player.jumpAnim;
-    }
-    else {
-      player.anim = player.walkAnim;
-    }
+  this.advance();  // Continue advancing the player in the game
 
-    player.anim.update();
-  };
+  // add gravity (affecting player's vertical speed)
+  if (player.isFalling || player.isJumping) {
+    player.dy += player.gravity;
+  }
+
+  // change animation if the player is falling
+  if (player.dy > 0) {
+    player.anim = player.fallAnim;
+  }
+  // change animation if the player is jumping
+  else if (player.dy < 0) {
+    player.anim = player.jumpAnim;
+  }
+  else {
+    player.anim = player.walkAnim;  // Default walking animation
+  }
+
+  player.anim.update();  // Update the current animation
+};
 
   /**
    * Draw the player at it's current position
