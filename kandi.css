@@ -161,7 +161,7 @@ a {
 
 #game-logo {
   position: absolute;
-  top: 60px; /* Adjust to position the image where you want */
+  top: 150px; /* Adjust to position the image where you want */
   left: 50%; /* Center the image horizontally */
   transform: translateX(-50%); /* Center the image exactly */
   max-width: 100%;

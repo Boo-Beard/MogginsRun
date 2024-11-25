@@ -143,7 +143,7 @@ a {
 }
 
 #main h1 {
-  font-size: 90px; /* Bigger text for more impact */
+  font-size: 100px; /* Bigger text for more impact */
   font-weight: bold;
   background: linear-gradient(90deg, 
     #ff0080, /* Neon Pink */
@@ -161,7 +161,7 @@ a {
 
 #game-logo {
   position: absolute;
-  top: 60px; /* Adjust to position the image where you want */
+  top: 120px; /* Adjust to position the image where you want */
   left: 50%; /* Center the image horizontally */
   transform: translateX(-50%); /* Center the image exactly */
   max-width: 100%;
