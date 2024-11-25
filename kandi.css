@@ -121,9 +121,52 @@ a {
   bottom: 0;
   right: 0;
 }
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Make sure the container takes up the full height */
+  text-align: center;
+  position: relative; /* Required for absolute positioning of the image */
+}
+
 #main h1 {
-  color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  font-size: 90px; /* Bigger text for more impact */
+  font-weight: bold;
+  background: linear-gradient(90deg, 
+    #ff0080, /* Neon Pink */
+    #00ffcc, /* Electric Cyan */
+    #ff00ff, /* Neon Purple */
+    #ff0080, /* Neon Pink */
+    #00d2ff /* Miami Blue */
+  );
+  background-size: 400% 100%; /* Makes the gradient move more dramatically */
+  color: transparent;
+  -webkit-background-clip: text; /* Make the gradient only affect the text */
+  animation: gradientAnimation 4s ease-in-out infinite; /* Slow down the animation for more retro effect */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.8); /* Intense glow effect */
+}
+
+#game-logo {
+  position: absolute;
+  top: 60px; /* Adjust to position the image where you want */
+  left: 50%; /* Center the image horizontally */
+  transform: translateX(-50%); /* Center the image exactly */
+  max-width: 100%;
+  height: auto;
+  z-index: 1; /* Make sure it stays above other elements */
 }
 /* General Button Styling */
 .button {

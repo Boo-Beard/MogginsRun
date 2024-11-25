@@ -16,8 +16,10 @@
         <div id="percent">Downloading: <span id="p"></span></div>
         <progress id="progress-bar" value="0"></progress>
       </div>
-      <div id="main">
 	  <br>
+      <div id="main">
+	
+	    <img src='imgs/headlogo.png' alt="Your Image" id="game-logo" />
         <h1>Moggins Runner</h1>
         <ul>
           <li><a href="javascript:void(0)" class="button play">Start</a></li>
@@ -40,7 +42,7 @@
         <ul>
         </ul>
         <ul>
-          <li class="developer">Creator: <a href="http://blog.sklambert.com/">David Goggins</a></li>
+          <li class="developer">Creator: <a href="http://google.com/">$Moggins</a></li>
         </ul>
         <a href="javascript:void(0)" class="button back">Back</a>
       </div>
