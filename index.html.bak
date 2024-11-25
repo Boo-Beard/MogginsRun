@@ -58,7 +58,7 @@
         <a href="javascript:void(0)" class="button back">Back</a>
       </div>
     </div>
-   <canvas id="canvas" width="1200" height="1200">
+   <canvas id="canvas" width="1200" height="2000">
 
 	
       <p>You're browser does not support the required functionality to play this game, Bitch</p>
