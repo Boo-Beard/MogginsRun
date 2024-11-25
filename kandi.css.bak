@@ -74,7 +74,7 @@ a {
 
 /* Progress Bar */
 #progress {
-  height: 12%;
+  height: 20%;
   margin: auto;
   position: absolute;
   top: 0;
@@ -289,11 +289,17 @@ font-family: 'Bungee Shade', sans-serif;
 #game-over {
   display: block;
   text-align: center;
-  padding-top: 202px;
+  padding-top: 250px;
   z-index: 1;
   width: 100%;
   height: 100%;
   position: absolute;
+  font-family: 'Bungee Shade', sans-serif;
+    color: white;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+
 }
 
 /* Media Queries for Mobile Devices */
@@ -318,11 +324,25 @@ font-family: 'Bungee Shade', sans-serif;
     height: 100%;
   }
 
-  /* Adjust header and game-over text */
+/* Default font size for larger screens */
+#main h1, #game-over h2 {
+  font-size: 2rem;  /* Larger font for larger screens */
+}
+
+/* Adjust font size for medium-sized screens (e.g., tablets) */
+@media (max-width: 768px) {
   #main h1, #game-over h2 {
-    font-size: 24px;  /* Bigger text */
+    font-size: 1.75rem;  /* Slightly smaller font for tablets */
   }
 }
+
+/* Adjust font size for smaller screens (e.g., smartphones) */
+@media (max-width: 480px) {
+  #main h1, #game-over h2 {
+    font-size: 1.25rem;  /* Smaller font for small screens */
+  }
+}
+
 
 @media (max-width: 480px) {
   /* Make canvas more responsive */

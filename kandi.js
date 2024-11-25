@@ -738,7 +738,7 @@ function animate() {
     updateEnemies();
 
     // draw the score
-    ctx.fillText('Score: ' + score + 'm', canvas.width - 140, 30);
+    ctx.fillText('Score: ' + score + 'm', canvas.width - 140, 90);
 
     // spawn a new Sprite
     if (ticker % Math.floor(platformWidth / player.speed) === 0) {
