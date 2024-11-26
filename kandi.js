@@ -696,11 +696,11 @@ function spawnSprites() {
   // start over
   else {
     // increase gap length every speed increase of 4
-gapLength = rand(player.speed - 4, player.speed - 1);
+gapLength = rand(player.speed - 3, player.speed - 1);
 
     // only allow a ground to increase by 1
 platformHeight = bound(rand(0, platformHeight + rand(0, 1)), 0, 3);
-platformLength = rand(Math.floor(player.speed / 2), player.speed * 2);
+platformLength = rand(Math.floor(player.speed / 2), player.speed * 1);
   }
 }
 
@@ -868,8 +868,8 @@ function startGame() {
   ticker = 0;
   stop = false;
   score = 0;
-  platformHeight = 1;
-  platformLength = 2;
+  platformHeight = 2;
+  platformLength = 15;
   gapLength = 1;
 
 
