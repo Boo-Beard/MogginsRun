@@ -9,9 +9,9 @@ var ground = [], water = [], enemies = [], environment = [];
 
 // platform variables
 var platformHeight, platformLength, gapLength;
-var platformWidth = 32;
+var platformWidth = 64;
 var platformBase = canvas.height - platformWidth;  // bottom row of the game
-var platformSpacer = 64;
+var platformSpacer = 128;
 
 var canUseLocalStorage = 'localStorage' in window && window.localStorage !== null;
 var playSound;
@@ -379,25 +379,49 @@ Vector.prototype.minDist = function(vec) {
  */
 var player = (function(player) {
   // add properties directly to the player imported object
-  player.width     = 60;
-  player.height    = 96;
-  player.speed     = 7;
+  player.width     = 120;
+  player.height    = 188;
+  player.speed     = 10;
 
   // jumping
   player.gravity   = 1;
   player.dy        = 0;
-  player.jumpDy    = -16;
+  player.jumpDy    = -20;
   player.isFalling = false;
   player.isJumping = false;
+// Initialize the spritesheet for the player with the given image file and frame dimensions
+player.sheet = new SpriteSheet('imgs/normal_walk.png', player.width, player.height);
+player.sheet2 = new SpriteSheet('imgs/normal_jump.png', player.width, player.height);
 
-  // spritesheets
-  player.sheet     = new SpriteSheet('imgs/normal_walk.png', player.width, player.height);
-  player.walkAnim  = new Animation(player.sheet, 4, 0, 15);
-  player.jumpAnim  = new Animation(player.sheet, 4, 15, 15);
-  player.fallAnim  = new Animation(player.sheet, 4, 11, 11);
-  player.anim      = player.walkAnim;
+// Create an animation for walking:
+// - Uses the player's spritesheet
+// - Has 4 frames
+// - Starts at frame index 0
+// - Plays at a frame rate of 15 frames per second (or duration for 15 frames)
+player.walkAnim = new Animation(player.sheet, 4, 0, 11);
 
-  Vector.call(player, 0, 0, 0, player.dy);
+// Create an animation for jumping:
+// - Uses the player's spritesheet
+// - Has 4 frames
+// - Starts at frame index 15
+// - Plays at a frame rate of 15 frames per second
+player.jumpAnim = new Animation(player.sheet2, 11, 0, 3);
+
+// Create an animation for falling:
+// - Uses the player's spritesheet
+// - Has 4 frames
+// - Starts at frame index 11
+// - Plays at a frame rate of 11 frames per second
+player.fallAnim = new Animation(player.sheet, 2, 0, 11);
+
+// Set the player's default animation to walking
+player.anim = player.walkAnim;
+
+// Initialize the player as a vector using the Vector class:
+// - Sets the x, y, and z positions to 0
+// - Sets the player's vertical velocity to `player.dy`
+Vector.call(player, 0, 0, 0, player.dy);
+
 
   var jumpCounter = 0;  // how long the jump button can be pressed down
 
@@ -559,7 +583,7 @@ function getType() {
             if (player.minDist(ground[i]) <= player.height/2 + 32 && // Adjusted collision detection for narrower platforms
                 (angle = Math.atan2(player.y - ground[i].y, player.x - ground[i].x) * 180/Math.PI) > -130 &&
                 angle < -50) {
-                player.isJumping = false;
+                player.isJumping = false;	
                 player.isFalling = false;
                 player.y = ground[i].y - player.height + 5;
                 player.dy = 0;
