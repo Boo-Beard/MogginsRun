@@ -11,7 +11,7 @@ var ground = [], water = [], enemies = [], environment = [];
 var platformHeight, platformLength, gapLength;
 var platformWidth = 64;
 var platformBase = canvas.height - platformWidth;  // bottom row of the game
-var platformSpacer = 128;
+var platformSpacer = 64;
 
 var canUseLocalStorage = 'localStorage' in window && window.localStorage !== null;
 var playSound;
@@ -381,7 +381,7 @@ var player = (function(player) {
   // add properties directly to the player imported object
   player.width     = 120;
   player.height    = 188;
-  player.speed     = 10;
+  player.speed     = 6;
 
   // jumping
   player.gravity   = 1;
@@ -405,7 +405,7 @@ player.walkAnim = new Animation(player.sheet, 4, 0, 11);
 // - Has 4 frames
 // - Starts at frame index 15
 // - Plays at a frame rate of 15 frames per second
-player.jumpAnim = new Animation(player.sheet2, 11, 0, 3);
+player.jumpAnim = new Animation(player.sheet2, 11, 0, 0);
 
 // Create an animation for falling:
 // - Uses the player's spritesheet
@@ -578,18 +578,19 @@ function getType() {
             ground[i].update();
             ground[i].draw();
 
-            // stop the player from falling when landing on a platform
-            var angle;
-            if (player.minDist(ground[i]) <= player.height/2 + 32 && // Adjusted collision detection for narrower platforms
-                (angle = Math.atan2(player.y - ground[i].y, player.x - ground[i].x) * 180/Math.PI) > -130 &&
-                angle < -50) {
-                player.isJumping = false;	
-                player.isFalling = false;
-                player.y = ground[i].y - player.height + 5;
-                player.dy = 0;
-            }
-        }
+// stop the player from falling when landing on a platform
+// stop the player from falling when landing on a platform
+var angle;
+if (player.minDist(ground[i]) <= player.height / 2 + 35 &&
+    (angle = Math.atan2(player.y - ground[i].y, player.x - ground[i].x) * 180 / Math.PI) > -120 &&
+    angle < -60) {
+    player.isJumping = false;    
+    player.isFalling = false;
+    player.y = ground[i].y - player.height + 5;
+    player.dy = 0;
+}
 
+		}
   // remove ground that have gone off screen
   if (ground[0] && ground[0].x < -platformWidth) {
     ground.splice(0, 1);
@@ -695,10 +696,11 @@ function spawnSprites() {
   // start over
   else {
     // increase gap length every speed increase of 4
-    gapLength = rand(player.speed - 2, player.speed);
+gapLength = rand(player.speed - 4, player.speed - 1);
+
     // only allow a ground to increase by 1
-    platformHeight = bound(rand(0, platformHeight + rand(0, 2)), 0, 4);
-    platformLength = rand(Math.floor(player.speed/2), player.speed * 4);
+platformHeight = bound(rand(0, platformHeight + rand(0, 1)), 0, 3);
+platformLength = rand(Math.floor(player.speed / 2), player.speed * 2);
   }
 }
 
@@ -760,13 +762,16 @@ function animate() {
     updatePlayer();
     updateGround();
     updateEnemies();
+// Set font style for a Miami Vice 80s vibe
+ctx.font = 'bold 40px Verdana'; // Use a bold, clean font like Verdana
+ctx.fillStyle = '#FFFFFF'; // Set the font color to white
 
-    // draw the score
-    ctx.fillText('Score: ' + score + 'm', canvas.width - 140, 30);
+// Draw the score
+ctx.fillText('Distance: ' + score + 'm', canvas.width - 350, 60);
 
     // spawn a new Sprite
     if (ticker % Math.floor(platformWidth / player.speed) === 0) {
-      spawnSprites();
+      spawnSprites();	
     }
 
     // increase player speed only when player is jumping
@@ -863,11 +868,10 @@ function startGame() {
   ticker = 0;
   stop = false;
   score = 0;
-  platformHeight = 2;
-  platformLength = 15;
-  gapLength = 0;
+  platformHeight = 1;
+  platformLength = 2;
+  gapLength = 1;
 
-  ctx.font = '16px arial, sans-serif';
 
   for (var i = 0; i < 30; i++) {
     ground.push(new Sprite(i * (platformWidth-3), platformBase - platformHeight * platformSpacer, 'grass'));
