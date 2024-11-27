@@ -398,21 +398,21 @@ player.sheet2 = new SpriteSheet('imgs/normal_jump.png', player.width, player.hei
 // - Has 4 frames
 // - Starts at frame index 0
 // - Plays at a frame rate of 15 frames per second (or duration for 15 frames)
-player.walkAnim = new Animation(player.sheet, 4, 0, 11);
+player.walkAnim = new Animation(player.sheet, 8, 0, 11);
 
 // Create an animation for jumping:
 // - Uses the player's spritesheet
 // - Has 4 frames
 // - Starts at frame index 15
 // - Plays at a frame rate of 15 frames per second
-player.jumpAnim = new Animation(player.sheet2, 11, 0, 0);
+player.jumpAnim = new Animation(player.sheet2, 8, 0, 0);
 
 // Create an animation for falling:
 // - Uses the player's spritesheet
 // - Has 4 frames
 // - Starts at frame index 11
 // - Plays at a frame rate of 11 frames per second
-player.fallAnim = new Animation(player.sheet, 2, 0, 11);
+player.fallAnim = new Animation(player.sheet, 8, 0, 11);
 
 // Set the player's default animation to walking
 player.anim = player.walkAnim;
@@ -700,7 +700,7 @@ gapLength = rand(player.speed - 3, player.speed - 1);
 
     // only allow a ground to increase by 1
 platformHeight = bound(rand(0, platformHeight + rand(0, 1)), 0, 3);
-platformLength = rand(Math.floor(player.speed / 2), player.speed * 1);
+platformLength = rand(Math.floor(player.speed / 2), player.speed * 10);
   }
 }
 
