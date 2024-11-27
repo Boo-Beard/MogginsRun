@@ -67,6 +67,9 @@ a {
 }
 #menu.main {
   background-image: url('imgs/menu-bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% auto; /* Width 100% and height automatically adjusted */
+  background-position: center;
 }
 #menu.credits {
   background-image: url('imgs/credits-bg.png');
@@ -170,6 +173,130 @@ a {
   height: auto;
   z-index: 1; /* Make sure it stays above other elements */
 }
+/* General Styling for Social Buttons */
+.social-buttons {
+  display: flex;
+  justify-content: center; /* Align buttons horizontally */
+  gap: 15px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.social-button {
+  background: #333;
+  color: white;
+  font-size: 12px; /* Smaller font */
+  font-weight: bold;
+  padding: 8px 16px; /* Reduced padding for smaller size */
+  border: 2px solid transparent;
+  border-radius: 50px; /* Round the edges for a pill shape */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+}
+
+.social-button:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+  transition: all 0.6s;
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: 1;
+}
+
+.social-button:hover {
+  color: #fff;
+  transform: scale(1.1); /* Slight grow effect on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.social-button:hover:before {
+  width: 0;
+  height: 0;
+}
+
+.social-button span {
+  z-index: 2;
+}
+
+.social-button:nth-child(1) {
+  background: linear-gradient(45deg, #0088cc, #006f99); /* Telegram Button */
+}
+
+.social-button:nth-child(2) {
+  background: linear-gradient(45deg, #ffbf00, #ff9f00); /* Dextools Button */
+}
+
+.social-button:nth-child(3) {
+  background: linear-gradient(45deg, #1DA1F2, #00b0e6); /* Twitter Button */
+}
+
+/* Glowing effect on hover */
+.social-button:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.7);
+}
+
+/* Button text styling */
+.social-button {
+  font-size: 12px;
+  font-family: 'Bungee Shade', sans-serif;
+  position: relative;
+}
+
+.social-button span {
+  position: relative;
+  z-index: 2; /* Ensure the text stays above all effects */
+}
+
+/* Hover animations for dynamic effect */
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px #1DA1F2, 0 0 10px #1DA1F2, 0 0 15px #1DA1F2;
+  }
+  50% {
+    box-shadow: 0 0 20px #1DA1F2, 0 0 30px #1DA1F2, 0 0 40px #1DA1F2;
+  }
+  100% {
+    box-shadow: 0 0 5px #1DA1F2, 0 0 10px #1DA1F2, 0 0 15px #1DA1F2;
+  }
+}
+
+.social-button:active {
+  animation: glowing 1.5s ease-in-out infinite;
+}
+
+/* Mobile Button Adjustments */
+@media (max-width: 768px) {
+  .social-button {
+    font-size: 10px; /* Even smaller font size for mobile */
+    width: 100px; /* Smaller width */
+    height: 40px; /* Smaller height */
+    padding: 8px 12px;
+  }
+
+  .social-buttons {
+    gap: 10px; /* Reduce gap between buttons */
+  }
+}
+
+@media (max-width: 480px) {
+  .social-button {
+    font-size: 10px; /* Further reduce font size for very small screens */
+    width: 90px; /* Smaller width on very small screens */
+    height: 35px; /* Smaller height */
+    padding: 6px 10px;
+  }
+
+  .social-buttons {
+    gap: 8px; /* Even smaller gap between buttons */
+  }
+}
+
 
 .button {
   display: block;

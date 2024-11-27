@@ -398,7 +398,7 @@ player.sheet2 = new SpriteSheet('imgs/normal_jump.png', player.width, player.hei
 // - Has 4 frames
 // - Starts at frame index 0
 // - Plays at a frame rate of 15 frames per second (or duration for 15 frames)
-player.walkAnim = new Animation(player.sheet, 8, 0, 11);
+player.walkAnim = new Animation(player.sheet, 4, 0, 11);
 
 // Create an animation for jumping:
 // - Uses the player's spritesheet

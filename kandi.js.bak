@@ -379,9 +379,9 @@ Vector.prototype.minDist = function(vec) {
  */
 var player = (function(player) {
   // add properties directly to the player imported object
-  player.width     = 120;
-  player.height    = 188;
-  player.speed     = 8;
+  player.width     = 480; // Adjusted to match new sprite sheet frame width (1920 / 4 columns)
+  player.height    = 576; 
+  player.speed     = 10;
 
   // jumping
   player.gravity   = 1;
@@ -398,7 +398,7 @@ player.sheet2 = new SpriteSheet('imgs/normal_jump.png', player.width, player.hei
 // - Has 4 frames
 // - Starts at frame index 0
 // - Plays at a frame rate of 15 frames per second (or duration for 15 frames)
-player.walkAnim = new Animation(player.sheet, 8, 0, 11);
+player.walkAnim = new Animation(player.sheet, 4, 0, 11);
 
 // Create an animation for jumping:
 // - Uses the player's spritesheet
