@@ -927,15 +927,12 @@ function startGame() {
         // Submit the player's score to the leaderboard
         submitScore(playerName, score);
     }
-// Get player's name from Telegram WebApp
-const telegram = window.Telegram.WebApp;
-const playerName = telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.username || telegram.initDataUnsafe.user.first_name : "Guest";
 
 // Set the greeting message in the main menu
 document.addEventListener('DOMContentLoaded', function() {
     const greetingElement = document.getElementById('greeting');
     if (greetingElement) {
-        greetingElement.textContent = 'Hi ' + playerName + '! Welcome to the game!';
+        greetingElement.textContent = 'User: ' + playerName + '';
     }
 });
 
