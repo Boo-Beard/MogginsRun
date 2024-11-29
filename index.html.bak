@@ -32,15 +32,20 @@
       </div>
       <div id="credits">
         <ul>
-          <li class="developer">Creator: <a href="http://google.com/">$Moggins</a></li>
+        <div class="social-buttons">
+          <a href="https://t.me/+0k6MgsB-KUM4MzVh" target="_blank"><button class="social-button">Telegram</button></a>
+          <a href="https://dexscreener.com/solana/bsmbnrcd8ujp7hjeyyq2bdor8iriz4nwvke8cwkqjtjz" target="_blank"><button class="social-button">Dexscreener</button></a>
+          <a href="https://x.com/mogginscoin" target="_blank"><button class="social-button">Twitter</button></a>
+		  
+        </div>
         </ul>
         <div id="leaderboard"></div>
         <a href="javascript:void(0)" class="button back">Back</a>
       </div>
     </div>
     <canvas id="canvas" width="1200" height="1600">
-      <p>Your browser does not support the required functionality to play this game.</p>
-      <p>Please update to a modern browser such as <a href="https://www.google.com/chrome/">Google Chrome</a> to play.</p>
+      <p>Your browser does not support the required functionality to play this game Bitch!.</p>
+      <p>Update to a goddamn modern browser such as <a href="https://www.google.com/chrome/">Google Chrome</a> Bitch.</p>
     </canvas>
     <div id="game-over">
       <h2>You only ran <span id="score"></span> meters, you little Bitch!</h2>

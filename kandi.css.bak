@@ -62,9 +62,15 @@ a {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 50px;
   font-family: 'Bungee Shade', sans-serif;
     border: 2px solid #ff0080; /* Bright pink border to add a pop */
+}
+#leaderboard li:first-child {
+    background: #ff0080; /* Bright pink to highlight the top score */
+    font-weight: bold; /* Make the top score bold */
+    color: #ffffff; /* Bright white text for contrast */
+    border: 2px solid #ffcc00; /* Neon yellow border for extra emphasis */
 }
 
 #leaderboard ul {
@@ -99,12 +105,12 @@ a {
   background-color: grey;
 }
 #menu.main {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('imgs/menu-bg.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('imgs/menu-bg.png');
   background-size: cover; /* Makes the background fill the screen while maintaining aspect ratio */
   background-position: center;
   filter: contrast(1.2) brightness(1.1); /* Enhances the image with more depth and vibrancy */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Adds a shadow for a subtle 3D effect */
-  animation: backgroundZoom 2s ease-in-out infinite alternate; /* Adds a gentle zoom in/out animation */
+  animation: backgroundZoom 3s ease-in-out infinite alternate; /* Adds a gentle zoom in/out animation */
 }
 
 @keyframes backgroundZoom {
@@ -139,22 +145,27 @@ a {
 #progress-bar {
   width: 200px;
 }
-
 /* Sound Icon */
 .sound {
-  display: none;
+  display: block; /* Ensure the element is visible */
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 30px;
-  height: 25px;
+  width: 80px; /* Adjust this to make the icon wider */
+  height: 80px; /* Adjust this to make the icon taller */
   cursor: pointer;
   z-index: 3;
+  background-size: contain; /* Ensures the background image scales proportionally */
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+
 .sound-on {
   background-image: url('imgs/soundOn.png');
   background-repeat: no-repeat;
 }
+
 .sound-off {
   background-image: url('imgs/soundOff.png');
   background-repeat: no-repeat;
@@ -354,7 +365,7 @@ a {
   border: 2px solid #FF1493; /* Neon pink border for extra punch */
   color: white;
   font-weight: bold;
-  font-size: 26px; /* Larger font for readability */
+  font-size: 30px; /* Larger font for readability */
 font-family: 'Bungee Shade', sans-serif;
   text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FF1493, 0 0 30px #FF1493, 0 0 40px #00FFFF; /* Neon glow effect */
   background: linear-gradient(145deg, #00FFC6, #FF1493); /* Vibrant gradient background */
@@ -380,19 +391,6 @@ font-family: 'Bungee Shade', sans-serif;
   box-shadow: 0 0 10px 2px #00FFFF, 0 0 20px 2px #FF1493; /* Glow effect for focus */
 }
 
-/* Add a cool shimmer effect */
-.button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%; /* Start shimmer effect off-screen */
-  width: 300%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  transform: skewX(-45deg);
-  transition: 0.5s;
-  z-index: 1; /* Ensure it's above the button background */
-}
 
 .button:hover::before {
   left: 100%; /* Move the shimmer effect across the button */
@@ -431,7 +429,7 @@ font-family: 'Bungee Shade', sans-serif;
 #credits {
   display: none;
   line-height: 30px;
-  margin: auto;
+  margin-top:95px
   position: absolute;
   top: 0;
   left: 0;
@@ -440,6 +438,8 @@ font-family: 'Bungee Shade', sans-serif;
 }
 #credits li {
   padding: 5px 0;
+    margin-top:95px
+
 }
 
 .artwork, .music, .developer {

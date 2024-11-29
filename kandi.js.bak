@@ -79,6 +79,7 @@ var assetLoader = (function() {
     'grass1'        : 'imgs/grassMid1.png',
     'grass2'        : 'imgs/grassMid2.png',
     'bridge'        : 'imgs/bridge.png',
+	'signpost'      : 'imgs/signpost.png',
     'plant'         : 'imgs/plant.png',
     'bush1'         : 'imgs/bush1.png',
     'bush2'         : 'imgs/bush2.png',
@@ -86,6 +87,8 @@ var assetLoader = (function() {
     'spikes'        : 'imgs/spikes.png',
     'box'           : 'imgs/boxCoin.png',
     'slime'         : 'imgs/slime.png'
+	
+	
   };
 
   // sounds dictionary
@@ -351,6 +354,8 @@ function Vector(x, y, dx, dy) {
   this.dy = dy || 0;
 }
 
+
+
 /**
  * Advance the vectors position by dx,dy
  */
@@ -401,7 +406,7 @@ var player = (function(player) {
   // jumping
   player.gravity   = 1.2;
   player.dy        = 0;
-  player.jumpDy    = -20;
+  player.jumpDy    = -25;
   player.isFalling = false;
   player.isJumping = false;
 // Initialize the spritesheet for the player with the given image file and frame dimensions
@@ -709,6 +714,8 @@ platformLength = rand(Math.floor(player.speed / 2), player.speed * 10);
 /**
  * Spawn new environment sprites off screen
  */
+ 
+ 
 function spawnEnvironmentSprites() {
   if (score > 40 && rand(0, 20) === 0 && platformHeight < 3) {
     if (Math.random() > 0.5) {
@@ -730,8 +737,23 @@ function spawnEnvironmentSprites() {
         'bush2'
       ));
     }
+	        // Spawn the signpost randomly
+        spawnRandomSignpost(
+            canvas.width + platformWidth % player.speed,
+            platformBase - platformHeight * platformSpacer
+        );
   }
 }
+function spawnRandomSignpost(x, y) {
+    if (Math.random() > 0.95) { // 15% chance to spawn the signpost
+        environment.push(new Sprite(
+            x, 
+            y - platformWidth - 110, // Adjust this value to move it higher
+            'signpost' // Use the 'signpost' asset
+        ));
+    }
+}
+
 
 /**
  * Spawn new enemy sprites off screen
@@ -741,10 +763,11 @@ function spawnEnemySprites() {
       (enemies.length ? canvas.width - enemies[enemies.length-1].x >= platformWidth * 3 ||
        canvas.width - enemies[enemies.length-1].x < platformWidth : true)) {
     enemies.push(new Sprite(
-      canvas.width + platformWidth % player.speed,
-      platformBase - platformHeight * platformSpacer - platformWidth,
-      Math.random() > 0.5 ? 'spikes' : 'slime'
-    ));
+  canvas.width + platformWidth % player.speed,
+  platformBase - platformHeight * platformSpacer - platformWidth - 60, // Adjust to raise the enemy
+  Math.random() > 0.5 ? 'spikes' : 'slime'
+));
+
   }
 }
 
@@ -767,6 +790,7 @@ function animate() {
 // Set font style for a Miami Vice 80s vibe
 ctx.font = 'bold 40px Verdana'; // Use a bold, clean font like Verdana
 ctx.fillStyle = '#FFFFFF'; // Set the font color to white
+
 
 // Draw the score
 ctx.fillText('Distance: ' + score + 'm', canvas.width - 350, 60);
