@@ -151,8 +151,8 @@ a {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 40px; /* Adjust this to make the icon wider */
-  height: 40px; /* Adjust this to make the icon taller */
+  width: 20px; /* Adjust this to make the icon wider */
+  height: 20px; /* Adjust this to make the icon taller */
   cursor: pointer;
   z-index: 3;
   background-size: contain; /* Ensures the background image scales proportionally */
