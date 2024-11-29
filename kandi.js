@@ -381,10 +381,10 @@ var player = (function(player) {
   // add properties directly to the player imported object
   player.width     = 120;
   player.height    = 188;
-  player.speed     = 10;
+  player.speed     = 15;
 
   // jumping
-  player.gravity   = 1;
+  player.gravity   = 1.2;
   player.dy        = 0;
   player.jumpDy    = -20;
   player.isFalling = false;
@@ -398,21 +398,21 @@ player.sheet2 = new SpriteSheet('imgs/normal_jump.png', player.width, player.hei
 // - Has 4 frames
 // - Starts at frame index 0
 // - Plays at a frame rate of 15 frames per second (or duration for 15 frames)
-player.walkAnim = new Animation(player.sheet, 4, 0, 11);
+player.walkAnim = new Animation(player.sheet, 2, 0, 11);
 
 // Create an animation for jumping:
 // - Uses the player's spritesheet
 // - Has 4 frames
 // - Starts at frame index 15
 // - Plays at a frame rate of 15 frames per second
-player.jumpAnim = new Animation(player.sheet2, 8, 0, 0);
+player.jumpAnim = new Animation(player.sheet2, 4, 0, 0);
 
 // Create an animation for falling:
 // - Uses the player's spritesheet
 // - Has 4 frames
 // - Starts at frame index 11
 // - Plays at a frame rate of 11 frames per second
-player.fallAnim = new Animation(player.sheet, 8, 0, 11);
+player.fallAnim = new Animation(player.sheet, 4, 0, 11);
 
 // Set the player's default animation to walking
 player.anim = player.walkAnim;
