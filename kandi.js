@@ -909,32 +909,39 @@ function startGame() {
 /**
  * End the game and restart
  */
-/**
- * End the game and restart
- */
-    function gameOver() {
-        stop = true;
-        $('#score').html(score);
-        $('#game-over').show();
-        assetLoader.sounds.bg.pause();
-        assetLoader.sounds.gameOver.currentTime = 0;
-        assetLoader.sounds.gameOver.play();
+function gameOver() {
+    stop = true;
+    $('#score').html(score);
+    $('#game-over').show();
+    assetLoader.sounds.bg.pause();
+    assetLoader.sounds.gameOver.currentTime = 0;
+    assetLoader.sounds.gameOver.play();
 
-        // Get player's name from Telegram WebApp
-        const telegram = window.Telegram.WebApp;
-        const playerName = telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.username || telegram.initDataUnsafe.user.first_name : "Unknown";
+    // Get player's name from Telegram WebApp
+    const telegram = window.Telegram.WebApp;
+    const playerName = telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.username || telegram.initDataUnsafe.user.first_name : "Some no username lil Bitch";
 
-        // Submit the player's score to the leaderboard
-        submitScore(playerName, score);
-    }
+    // Submit the player's score to the leaderboard
+    submitScore(playerName, score);
 
-// Set the greeting message in the main menu
-document.addEventListener('DOMContentLoaded', function() {
-    const greetingElement = document.getElementById('greeting');
-    if (greetingElement) {
-        greetingElement.textContent = 'User: ' + playerName + '';
-    }
-});
+    // Fetch the leaderboard and display the top 5 players
+    fetch(webAppUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                // Sort leaderboard by score in descending order
+                const top5 = data.sort((a, b) => b.score - a.score).slice(0, 5);
+                let leaderboardHtml = '<h1>Top 5 Players:</h1><ul>';
+                top5.forEach(player => {
+                    leaderboardHtml += `<h1><li>${player.name}: ${player.score}</h1></li>`;
+                });
+                leaderboardHtml += '</ul>';
+                $('#leaderboard').html(leaderboardHtml);  // Add leaderboard data to the DOM
+            }
+        })
+        .catch(error => console.error("Error fetching leaderboard:", error));
+}
+
 
 /**
  * Click handlers for the different menu screens

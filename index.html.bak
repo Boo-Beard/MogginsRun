@@ -27,7 +27,7 @@
 
         <ul>
 
-		     <h2>v.1.1.0</h2>
+		     <h2>v.1.1.1</h2>
           <li><a href="javascript:void(0)" class="button play">Play</a></li>
 		  <div class="social-buttons">
   <a href="https://t.me/your_telegram_link" target="_blank">
@@ -53,6 +53,7 @@
 		<br>
 		<br>
 		<br>
+		
           
           <li class="artwork">TG<a href="http://www.google.com/">TG</a></li>
           <li class="artwork">DexTools: <a href="http://www.google.com/">Dextools</a></li>
@@ -67,13 +68,21 @@
     </div>
    <canvas id="canvas" width="1200" height="1600">
 
+
 	
       <p>You're browser does not support the required functionality to play this game, Bitch</p>
       <p>STFU and update to a modern browser such as <a href="www.google.com/chrome/‎">Google Chrome</a> to play.</p>
     </canvas>
-    <div id="game-over">
+   
+	  <div id="game-over">
+    <h2>Game Over!</h2>
       <h2>You only ran <span id="score"></span> meters,You little bitch! </h2>
-      <a href="javascript:void(0)" class="button restart"> Try again?</a>
+    <div id="leaderboard"></div> <!-- Leaderboard container -->
+     <h2>Leaderboard: </h2>
+	    <a href="javascript:void(0)" class="button restart"> Try again?</a>
+</div>
+
+	  
     </div>
   </div>
   <script type="text/javascript" src="kandi.js"></script>
