@@ -429,7 +429,6 @@ font-family: 'Bungee Shade', sans-serif;
 #credits {
   display: none;
   line-height: 30px;
-  margin-top:95px
   position: absolute;
   top: 0;
   left: 0;
@@ -438,7 +437,7 @@ font-family: 'Bungee Shade', sans-serif;
 }
 #credits li {
   padding: 5px 0;
-    margin-top:95px
+    margin-top:35px
 
 }
 
