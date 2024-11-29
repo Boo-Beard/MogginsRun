@@ -408,26 +408,14 @@ var player = (function(player) {
 player.sheet = new SpriteSheet('imgs/normal_walk.png', player.width, player.height);
 player.sheet2 = new SpriteSheet('imgs/normal_jump.png', player.width, player.height);
 
-// Create an animation for walking:
-// - Uses the player's spritesheet
-// - Has 4 frames
-// - Starts at frame index 0
-// - Plays at a frame rate of 15 frames per second (or duration for 15 frames)
-player.walkAnim = new Animation(player.sheet, 2, 0, 11);
 
-// Create an animation for jumping:
-// - Uses the player's spritesheet
-// - Has 4 frames
-// - Starts at frame index 15
-// - Plays at a frame rate of 15 frames per second
+player.walkAnim = new Animation(player.sheet, 5, 0, 11);
+
+
 player.jumpAnim = new Animation(player.sheet2, 4, 0, 0);
 
-// Create an animation for falling:
-// - Uses the player's spritesheet
-// - Has 4 frames
-// - Starts at frame index 11
-// - Plays at a frame rate of 11 frames per second
-player.fallAnim = new Animation(player.sheet, 4, 0, 11);
+
+player.fallAnim = new Animation(player.sheet, 8, 0, 11);
 
 // Set the player's default animation to walking
 player.anim = player.walkAnim;
@@ -515,7 +503,7 @@ player.update = function() {
    */
   player.reset = function() {
     player.x = 64;
-    player.y = 250;
+    player.y = 550;
   };
 
   return player;
@@ -593,7 +581,6 @@ function getType() {
             ground[i].update();
             ground[i].draw();
 
-// stop the player from falling when landing on a platform
 // stop the player from falling when landing on a platform
 var angle;
 if (player.minDist(ground[i]) <= player.height / 2 + 35 &&
@@ -711,10 +698,10 @@ function spawnSprites() {
   // start over
   else {
     // increase gap length every speed increase of 4
-gapLength = rand(player.speed - 3, player.speed - 1);
+gapLength = rand(player.speed - 3, player.speed - 2);
 
     // only allow a ground to increase by 1
-platformHeight = bound(rand(0, platformHeight + rand(0, 1)), 0, 3);
+platformHeight = bound(rand(Math.max(0, platformHeight - 1), platformHeight + 1), 0, 2);
 platformLength = rand(Math.floor(player.speed / 2), player.speed * 10);
   }
 }
@@ -884,7 +871,7 @@ function startGame() {
   stop = false;
   score = 0;
   platformHeight = 2;
-  platformLength = 15;
+  platformLength = 0;
   gapLength = 1;
 
 
@@ -989,7 +976,7 @@ function restartToMenu() {
     // Reset other variables related to gameplay
     ticker = 0;
     platformHeight = 2;
-    platformLength = 15;
+    platformLength = 20;
     gapLength = 1;
 
     // Ensure sounds are paused
@@ -1002,7 +989,7 @@ function restartToMenu() {
 
 // Click handler for the "Back to Menu" button at the game over screen
 $(document).on('click', '.back-to-menu', function() {
-    restartToMenu();
+    location.reload(); // Refresh the page completely to reset everything
 });
 
 // Click handler for the "Sound" button
