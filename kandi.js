@@ -1,6 +1,21 @@
-(function ($) {
-	
-	
+
+// Define the Google Apps Script Web App URL for leaderboard submission
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbzKOdD7Y-A0GlKEiZTgARMhgAKDaJB08lBXQf2EMuc3Fyy9ZQwpXN8I066YitHrNyrq/exec';
+function submitScore(name, score) {
+    fetch(webAppUrl, {
+        method: 'POST',
+        mode: 'no-cors',  // Allow requests even if CORS headers are not available
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: name, score: score }),
+    })
+    .then(response => {
+        console.log("Request sent, but no response data available due to 'no-cors' mode");
+    })
+    .catch(error => console.error("Error:", error));
+}
+(function ($) {	
 // define variables
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
@@ -894,14 +909,22 @@ function startGame() {
 /**
  * End the game and restart
  */
+/**
+ * End the game and restart
+ */
 function gameOver() {
-  stop = true;
-  $('#score').html(score);
-  $('#game-over').show();
-  assetLoader.sounds.bg.pause();
-  assetLoader.sounds.gameOver.currentTime = 0;
-  assetLoader.sounds.gameOver.play();
+    stop = true;
+    $('#score').html(score);
+    $('#game-over').show();
+    assetLoader.sounds.bg.pause();
+    assetLoader.sounds.gameOver.currentTime = 0;
+    assetLoader.sounds.gameOver.play();
+
+    // Submit the player's score to the leaderboard
+    const playerName = "PlayerName"; // Replace this with the actual player name, e.g., from Telegram WebApp
+    submitScore(playerName, score);
 }
+
 
 /**
  * Click handlers for the different menu screens
