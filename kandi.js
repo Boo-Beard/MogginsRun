@@ -1,7 +1,10 @@
 
 // Define the Google Apps Script Web App URL for leaderboard submission
 const webAppUrl = 'https://script.google.com/macros/s/AKfycbzKOdD7Y-A0GlKEiZTgARMhgAKDaJB08lBXQf2EMuc3Fyy9ZQwpXN8I066YitHrNyrq/exec';
+const webhookUrl = 'https://flowxo.com/hooks/a/gyxwke67';
+
 function submitScore(name, score) {
+    // First, send the score to the Google Apps Script Web App
     fetch(webAppUrl, {
         method: 'POST',
         mode: 'no-cors',  // Allow requests even if CORS headers are not available
@@ -10,11 +13,34 @@ function submitScore(name, score) {
         },
         body: JSON.stringify({ name: name, score: score }),
     })
-    .then(response => {
-        console.log("Request sent, but no response data available due to 'no-cors' mode");
+    .then(() => {
+        console.log("Score successfully sent to Google Apps Script. Now sending webhook to Flow XO.");
+
+        // After the score is sent to Google Apps Script, send a webhook to Flow XO
+        const payload = {
+            name: name,
+            score: score
+        };
+
+        // Send the webhook request to Flow XO
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to send webhook');
+            }
+            console.log("Webhook successfully sent to Flow XO.");
+        })
+        .catch(error => console.error("Error sending webhook to Flow XO:", error));
     })
-    .catch(error => console.error("Error:", error));
+    .catch(error => console.error("Error sending score to Google Apps Script:", error));
 }
+
 (function ($) {	
 // define variables
 var canvas = document.getElementById('canvas');
