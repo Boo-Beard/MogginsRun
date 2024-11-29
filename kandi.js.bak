@@ -924,72 +924,124 @@ function gameOver() {
     // Submit the player's score to the leaderboard
     submitScore(playerName, score);
 
-    // Fetch the leaderboard and display the top 5 players
+}
+
+
+/**
+ * Fetch the leaderboard and display it
+ */
+function showLeaderboard() {
     fetch(webAppUrl)
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
                 // Sort leaderboard by score in descending order
-                const top5 = data.sort((a, b) => b.score - a.score).slice(0, 5);
-                let leaderboardHtml = '<h1>Top 5 Players:</h1><ul>';
-                top5.forEach(player => {
-                    leaderboardHtml += `<h1><li>${player.name}: ${player.score}</h1></li>`;
-					
+const top10 = data.sort((a, b) => b.score - a.score).slice(0, 10);
+                let leaderboardHtml = '<h3>Leaderboard:</h3><ul>';
+top10.forEach(player => {
+                    leaderboardHtml += `<li>${player.name}: ${player.score}</li>`;
                 });
                 leaderboardHtml += '</ul>';
-                $('#leaderboard').html(leaderboardHtml);  // Add leaderboard data to the DOM
+                $('#leaderboard').html(leaderboardHtml);
             }
         })
         .catch(error => console.error("Error fetching leaderboard:", error));
 }
 
-
-/**
- * Click handlers for the different menu screens
- */
+// Click handler for the "Leaderboard" button
 $('.credits').click(function() {
-  $('#main').hide();
-  $('#credits').show();
-  $('#menu').addClass('credits');
+    $('#main').hide();      // Hide the main menu
+    $('#credits').show();   // Show the credits/leaderboard section
+    $('#menu').addClass('credits'); // Add class for styling (if needed)
+
+    // Fetch and display the leaderboard when the "Leaderboard" button is clicked
+    showLeaderboard();
 });
+
+// Click handler for the "Back" button in the credits section
 $('.back').click(function() {
-  $('#credits').hide();
-  $('#main').show();
-  $('#menu').removeClass('credits');
+    $('#credits').hide();   // Hide the credits section
+    $('#main').show();      // Show the main menu
+    $('#menu').removeClass('credits'); // Remove any special classes
 });
+/**
+ * Restart the game and go back to the main menu.
+ */
+function restartToMenu() {
+    // Stop the game loop
+    stop = true;
+
+    // Reset key elements visibility
+    $('#game-over').hide(); // Hide game over screen
+    $('#credits').hide();   // Hide the credits/leaderboard section
+    $('#main').show();      // Show the main menu
+
+    // Reset player position, score, and other game elements
+    player.reset();
+    score = 0;
+
+    // Reset ground, water, enemies, and other game arrays
+    ground = [];
+    water = [];
+    enemies = [];
+    environment = [];
+    
+    // Reset other variables related to gameplay
+    ticker = 0;
+    platformHeight = 2;
+    platformLength = 15;
+    gapLength = 1;
+
+    // Ensure sounds are paused
+    assetLoader.sounds.bg.pause();
+    assetLoader.sounds.gameOver.pause();
+
+    // Show the main menu with initial state
+    mainMenu();
+}
+
+// Click handler for the "Back to Menu" button at the game over screen
+$(document).on('click', '.back-to-menu', function() {
+    restartToMenu();
+});
+
+// Click handler for the "Sound" button
 $('.sound').click(function() {
-  var $this = $(this);
-  // sound off
-  if ($this.hasClass('sound-on')) {
-    $this.removeClass('sound-on').addClass('sound-off');
-    playSound = false;
-  }
-  // sound on
-  else {
-    $this.removeClass('sound-off').addClass('sound-on');
-    playSound = true;
-  }
-
-  if (canUseLocalStorage) {
-    localStorage.setItem('kandi.playSound', playSound);
-  }
-
-  // mute or unmute all sounds
-  for (var sound in assetLoader.sounds) {
-    if (assetLoader.sounds.hasOwnProperty(sound)) {
-      assetLoader.sounds[sound].muted = !playSound;
+    var $this = $(this);
+    // sound off
+    if ($this.hasClass('sound-on')) {
+        $this.removeClass('sound-on').addClass('sound-off');
+        playSound = false;
     }
-  }
+    // sound on
+    else {
+        $this.removeClass('sound-off').addClass('sound-on');
+        playSound = true;
+    }
+
+    if (canUseLocalStorage) {
+        localStorage.setItem('kandi.playSound', playSound);
+    }
+
+    // mute or unmute all sounds
+    for (var sound in assetLoader.sounds) {
+        if (assetLoader.sounds.hasOwnProperty(sound)) {
+            assetLoader.sounds[sound].muted = !playSound;
+        }
+    }
 });
+
+// Click handler for the "Play" button
 $('.play').click(function() {
-  $('#menu').hide();
-  startGame();
+    $('#menu').hide();
+    startGame();
 });
+
+// Click handler for the "Restart" button
 $('.restart').click(function() {
-  $('#game-over').hide();
-  startGame();
+    $('#game-over').hide();
+    startGame();
 });
 
 assetLoader.downloadAll();
 })(jQuery);
-

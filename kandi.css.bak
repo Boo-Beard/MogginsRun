@@ -58,7 +58,7 @@ a {
 /* Leaderboard styling*/
 #leaderboard {
     background-color: #0b0c0d; /* Dark gray/black for a night city vibe */
-    color: #00ffcc; /* Neon aqua */
+    color: #4F1754; /* Neon aqua */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -77,14 +77,14 @@ a {
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
-    font-size: 5px; /* Smaller text size for a cleaner appearance */
+    font-size: 15px; /* Smaller text size for a cleaner appearance */
     color: #ffffff; /* Bright white text for contrast */
 }
 
 #leaderboard h3 {
     color: #ffcc00; /* Neon yellow for the heading */
     margin-bottom: 15px;
-    font-size: 6px; /* Smaller heading size */
+    font-size: 25px; /* Smaller heading size */
 }
 
 
