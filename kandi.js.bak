@@ -940,24 +940,27 @@ function gameOver() {
 
 /**
  * Fetch the leaderboard and display it
- */
-function showLeaderboard() {
+ */function showLeaderboard() {
     fetch(webAppUrl)
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
                 // Sort leaderboard by score in descending order
-const top10 = data.sort((a, b) => b.score - a.score).slice(0, 10);
+                const top10 = data.sort((a, b) => b.score - a.score).slice(0, 10);
                 let leaderboardHtml = '<h3>Leaderboard:</h3><ul>';
-top10.forEach(player => {
-                    leaderboardHtml += `<li>${player.name}: ${player.score}</li>`;
+
+                // Add numbering to the leaderboard items
+                top10.forEach((player, index) => {
+                    leaderboardHtml += `<li>${index + 1}. ${player.name}: ${player.score}</li>`;
                 });
+
                 leaderboardHtml += '</ul>';
                 $('#leaderboard').html(leaderboardHtml);
             }
         })
         .catch(error => console.error("Error fetching leaderboard:", error));
 }
+
 
 // Click handler for the "Leaderboard" button
 $('.credits').click(function() {

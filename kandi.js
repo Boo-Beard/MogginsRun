@@ -33,14 +33,18 @@ var playSound;
 
 // set the sound preference
 if (canUseLocalStorage) {
-  playSound = (localStorage.getItem('kandi.playSound') === "true")
+  // Set playSound to true if no value is found in localStorage (default sound on)
+  playSound = (localStorage.getItem('kandi.playSound') === "true") || localStorage.getItem('kandi.playSound') === null;
 
   if (playSound) {
     $('.sound').addClass('sound-on').removeClass('sound-off');
-  }
-  else {
+  } else {
     $('.sound').addClass('sound-off').removeClass('sound-on');
   }
+} else {
+  // If localStorage isn't available, default to having sound on
+  playSound = true;
+  $('.sound').addClass('sound-on').removeClass('sound-off');
 }
 
 

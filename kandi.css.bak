@@ -60,7 +60,7 @@ a {
     background-color: #4F1754; /* Dark gray/black for a night city vibe */
     color: #00ffcc; /* Neon aqua */
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
     margin-top: 50px;
   font-family: 'Bungee Shade', sans-serif;
@@ -80,7 +80,7 @@ a {
 
 #leaderboard li {
     background: rgba(255, 0, 128, 0.2); /* Semi-transparent pink for some contrast */
-    margin: 10px 0;
+    margin: 5px 0;
     padding: 10px;
     border-radius: 5px;
     font-size: 15px; /* Smaller text size for a cleaner appearance */
@@ -437,7 +437,7 @@ font-family: 'Bungee Shade', sans-serif;
 }
 #credits li {
   padding: 5px 0;
-    margin-top:35px
+    margin-top: 25px
 
 }
 
