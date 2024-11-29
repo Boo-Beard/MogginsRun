@@ -23,9 +23,10 @@
       <div id="main">
 	  <br>
         <h1>Moggins Runner</h1>
+		<div id="greeting"></div>
+
         <ul>
-		  const playerName = telegram.initDataUnsafe.user ? telegram.initDataUnsafe.user.username || telegram.initDataUnsafe.user.first_name : "Unknown";
-    alert('Hi ' + playerName + '! Welcome to the game!');
+
 		     <h2>v.1.1.0</h2>
           <li><a href="javascript:void(0)" class="button play">Play</a></li>
 		  <div class="social-buttons">
