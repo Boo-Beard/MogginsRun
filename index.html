@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moggins Runner</title>
-  <link rel="stylesheet" href="kandi.css" type="text/css" media="screen">
-  <script type="text/javascript" src="jquery.2.1.1.min.js"></script>
+  <link rel="stylesheet" href="kandi.css" type="text/css">
+  <script src="jquery.2.1.1.min.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
 </head>
 
 <body>
-
   <div class="wrapper">
     <div class="sound sound-off"></div>
     <div id="menu">
@@ -21,61 +18,36 @@
         <progress id="progress-bar" value="0"></progress>
       </div>
       <div id="main">
-	  <br>
-        <h1>Moggins Runner</h1>
-		<div id="greeting"></div>
-
+        <h1></h1>
         <ul>
-
-		     <h2>v.1.1.1</h2>
-			 
           <li><a href="javascript:void(0)" class="button play">Play</a></li>
-		            <li><a href="javascript:void(0)" class="button credits">Leaderboard</a></li>
-
-		  <div class="social-buttons">
-  <a href="https://t.me/+0k6MgsB-KUM4MzVh" target="_blank">
-    <button class="social-button">Telegram</button>
-  </a>
-  <a href="https://dexscreener.com/solana/bsmbnrcd8ujp7hjeyyq2bdor8iriz4nwvke8cwkqjtjz" target="_blank">
-    <button class="social-button">Dexscreener</button>
-  </a>
-  <a href="https://x.com/mogginscoin" target="_blank">
-    <button class="social-button">Twitter</button>
-  </a>
-</div>
-
+          <li><a href="javascript:void(0)" class="button credits">Leaderboard</a></li>
+        </ul>
+        <div class="social-buttons">
+          <a href="https://t.me/+0k6MgsB-KUM4MzVh" target="_blank"><button class="social-button">Telegram</button></a>
+          <a href="https://dexscreener.com/solana/bsmbnrcd8ujp7hjeyyq2bdor8iriz4nwvke8cwkqjtjz" target="_blank"><button class="social-button">Dexscreener</button></a>
+          <a href="https://x.com/mogginscoin" target="_blank"><button class="social-button">Twitter</button></a>
 		  
+        </div>
       </div>
-<div id="credits">
-    <ul>
-        <li class="developer">Creator: <a href="http://google.com/">$Moggins</a></li>
-        <div id="leaderboard"></div> <!-- Leaderboard container -->
-    </ul>
-    <a href="javascript:void(0)" class="button back">Back</a>
-</div>
-
+      <div id="credits">
+        <ul>
+          <li class="developer">Creator: <a href="http://google.com/">$Moggins</a></li>
+        </ul>
+        <div id="leaderboard"></div>
+        <a href="javascript:void(0)" class="button back">Back</a>
+      </div>
     </div>
-   <canvas id="canvas" width="1200" height="1600">
-
-
-	
-      <p>You're browser does not support the required functionality to play this game, Bitch</p>
-      <p>STFU and update to a modern browser such as <a href="www.google.com/chrome/‎">Google Chrome</a> to play.</p>
+    <canvas id="canvas" width="1200" height="1600">
+      <p>Your browser does not support the required functionality to play this game Bitch!.</p>
+      <p>Update to a goddamn modern browser such as <a href="https://www.google.com/chrome/">Google Chrome</a> Bitch.</p>
     </canvas>
-   
-<div id="game-over">
-    <h2>You only ran <span id="score"></span> meters, You little bitch! </h2>
-    <a href="javascript:void(0)" class="button restart"> Try again?</a>
-<a href="javascript:void(0)" class="button back-to-menu">Back to Menu</a>
-</div>
-   
-
-</div>
-
-	  
+    <div id="game-over">
+      <h2>You only ran <span id="score"></span> meters, you little Bitch!</h2>
+      <a href="javascript:void(0)" class="button restart">Try again?</a>
+      <a href="javascript:void(0)" class="button back-to-menu">Back to Menu</a>
     </div>
   </div>
-  <script type="text/javascript" src="kandi.js"></script>
-  
+  <script src="kandi.js"></script>
 </body>
 </html>

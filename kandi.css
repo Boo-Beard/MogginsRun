@@ -99,8 +99,24 @@ a {
   background-color: grey;
 }
 #menu.main {
-  background-image: url('imgs/menu-bg.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('imgs/menu-bg.png');
+  background-size: cover; /* Makes the background fill the screen while maintaining aspect ratio */
+  background-position: center;
+  filter: contrast(1.2) brightness(1.1); /* Enhances the image with more depth and vibrancy */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Adds a shadow for a subtle 3D effect */
+  animation: backgroundZoom 2s ease-in-out infinite alternate; /* Adds a gentle zoom in/out animation */
 }
+
+@keyframes backgroundZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+
 #menu.credits {
   background-image: url('imgs/credits-bg.png');
 }
@@ -146,10 +162,11 @@ a {
 
 /* Main Game Menu */
 #main {
+
+  margin-top: 130px; /* Adjust the value as needed */
   display: none;
   height: 60%;
   overflow: auto;
-  margin: auto;
   position: absolute;
   top: 0;
   left: 0;
