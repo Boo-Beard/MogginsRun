@@ -933,7 +933,8 @@ function gameOver() {
                 const top5 = data.sort((a, b) => b.score - a.score).slice(0, 5);
                 let leaderboardHtml = '<h1>Top 5 Players:</h1><ul>';
                 top5.forEach(player => {
-                    leaderboardHtml += `<li>${player.name}: ${player.score}</li>`;
+                    leaderboardHtml += `<h1><li>${player.name}: ${player.score}</h1></li>`;
+					
                 });
                 leaderboardHtml += '</ul>';
                 $('#leaderboard').html(leaderboardHtml);  // Add leaderboard data to the DOM

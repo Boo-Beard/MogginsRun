@@ -931,9 +931,10 @@ function gameOver() {
             if (Array.isArray(data)) {
                 // Sort leaderboard by score in descending order
                 const top5 = data.sort((a, b) => b.score - a.score).slice(0, 5);
-                let leaderboardHtml = '<h1>Top 5 Players:</h1><ul>';
+                let leaderboardHtml = '<h1>Leaderboard:</h1><ul>';
                 top5.forEach(player => {
                     leaderboardHtml += `<h1><li>${player.name}: ${player.score}</h1></li>`;
+					
                 });
                 leaderboardHtml += '</ul>';
                 $('#leaderboard').html(leaderboardHtml);  // Add leaderboard data to the DOM

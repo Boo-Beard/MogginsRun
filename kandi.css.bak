@@ -55,6 +55,39 @@ a {
   left: 0;
 }
 
+/* Leaderboard styling*/
+#leaderboard {
+    background-color: #0b0c0d; /* Dark gray/black for a night city vibe */
+    color: #00ffcc; /* Neon aqua */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+  font-family: 'Bungee Shade', sans-serif;
+    border: 2px solid #ff0080; /* Bright pink border to add a pop */
+}
+
+#leaderboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+#leaderboard li {
+    background: rgba(255, 0, 128, 0.2); /* Semi-transparent pink for some contrast */
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 5px; /* Smaller text size for a cleaner appearance */
+    color: #ffffff; /* Bright white text for contrast */
+}
+
+#leaderboard h3 {
+    color: #ffcc00; /* Neon yellow for the heading */
+    margin-bottom: 15px;
+    font-size: 6px; /* Smaller heading size */
+}
+
+
 /* Menu Styles */
 #menu {
   position: absolute;
@@ -67,9 +100,6 @@ a {
 }
 #menu.main {
   background-image: url('imgs/menu-bg.png');
-  background-repeat: no-repeat;
-  background-size: 100% auto; /* Width 100% and height automatically adjusted */
-  background-position: center;
 }
 #menu.credits {
   background-image: url('imgs/credits-bg.png');
