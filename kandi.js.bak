@@ -1,27 +1,17 @@
 
 // Define the Google Apps Script Web App URL for leaderboard submission
 const webAppUrl = 'https://script.google.com/macros/s/AKfycbzKOdD7Y-A0GlKEiZTgARMhgAKDaJB08lBXQf2EMuc3Fyy9ZQwpXN8I066YitHrNyrq/exec';
-
-/**
- * Submit the player's score to Google Sheets
- * @param {string} name - The player's name (e.g., Telegram username)
- * @param {number} score - The player's score
- */
 function submitScore(name, score) {
     fetch(webAppUrl, {
         method: 'POST',
+        mode: 'no-cors',  // Allow requests even if CORS headers are not available
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ name: name, score: score }),
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            console.log("Score submitted successfully!");
-        } else {
-            console.error("Error submitting score:", data.message);
-        }
+    .then(response => {
+        console.log("Request sent, but no response data available due to 'no-cors' mode");
     })
     .catch(error => console.error("Error:", error));
 }
