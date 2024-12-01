@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moggins Runner</title>
   <link rel="stylesheet" href="kandi.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
   <script src="jquery.2.1.1.min.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
@@ -20,27 +22,26 @@
       <div id="main">
         <h1></h1>
         <ul>
-          <li><a href="javascript:void(0)" class="button play">Play</a></li>
-          <li><a href="javascript:void(0)" class="button credits">Leaderboard</a></li>
+          <li><a href="javascript:void(0)" class="button play"><i class="fa-solid fa-play fa-beat fa-xl"></i></i></a></li>
+          <li><a href="javascript:void(0)" class="button credits"><i class="fa-solid fa-trophy fa-xl"></i></a></li>
         </ul>
         <div class="social-buttons">
-          <a href="https://t.me/+0k6MgsB-KUM4MzVh" target="_blank"><button class="social-button">Telegram</button></a>
-          <a href="https://dexscreener.com/solana/bsmbnrcd8ujp7hjeyyq2bdor8iriz4nwvke8cwkqjtjz" target="_blank"><button class="social-button">Dexscreener</button></a>
-          <a href="https://x.com/mogginscoin" target="_blank"><button class="social-button">Twitter</button></a>
-		  
+<div class="social-buttons">
+  <a href="https://t.me/+0k6MgsB-KUM4MzVh" target="_blank" class="social-button">
+    <i class="fa-brands fa-telegram fa-2xl" style="color: #ffffff;"></i>
+  </a>
+  <a href="https://mogginscoin.com" target="_blank" class="social-button">
+    <i class="fa-solid fa-desktop fa-2xl" style="color: #ffffff;"></i>
+  </a>
+  <a href="https://x.com/mogginscoin" target="_blank" class="social-button">
+    <i class="fa-brands fa-x-twitter fa-2xl" style="color: #ffffff;"></i>
+  </a>
+</div>
         </div>
       </div>
       <div id="credits">
-        <ul>
-        <div class="social-buttons">
-          <a href="https://t.me/+0k6MgsB-KUM4MzVh" target="_blank"><button class="social-button">Telegram</button></a>
-          <a href="https://dexscreener.com/solana/bsmbnrcd8ujp7hjeyyq2bdor8iriz4nwvke8cwkqjtjz" target="_blank"><button class="social-button">Dexscreener</button></a>
-          <a href="https://x.com/mogginscoin" target="_blank"><button class="social-button">Twitter</button></a>
-		  
-        </div>
-        </ul>
         <div id="leaderboard"></div>
-        <a href="javascript:void(0)" class="button back">Back</a>
+        <a href="javascript:void(0)" class="button back"><i class="fa-solid fa-circle-left fa-xl"></i></a>
       </div>
     </div>
     <canvas id="canvas" width="1200" height="1600">
@@ -49,8 +50,8 @@
     </canvas>
     <div id="game-over">
       <h2>You only ran <span id="score"></span> meters, you little Bitch!</h2>
-      <a href="javascript:void(0)" class="button restart">Try again?</a>
-      <a href="javascript:void(0)" class="button back-to-menu">Back to Menu</a>
+      <a href="javascript:void(0)" class="button restart"><i class="fa-solid fa-rotate-right fa-spin fa-xl"></i></a>
+      <a href="javascript:void(0)" class="button back-to-menu"><i class="fa-solid fa-house fa-xl"></i></a>
     </div>
   </div>
   <script src="kandi.js"></script>

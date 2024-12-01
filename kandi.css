@@ -1,5 +1,10 @@
 /* General Reset */
 <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -110,7 +115,7 @@ a {
   background-position: center;
   filter: contrast(1.2) brightness(1.1); /* Enhances the image with more depth and vibrancy */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Adds a shadow for a subtle 3D effect */
-  animation: backgroundZoom 3s ease-in-out infinite alternate; /* Adds a gentle zoom in/out animation */
+  animation: backgroundZoom 10s ease-in-out infinite alternate; /* Adds a gentle zoom in/out animation */
 }
 
 @keyframes backgroundZoom {
@@ -235,97 +240,9 @@ a {
 .social-buttons {
   display: flex;
   justify-content: center; /* Align buttons horizontally */
-  gap: 15px; /* Space between buttons */
-  margin-top: 20px;
-}
-
-.social-button {
-  background: #333;
-  color: white;
-  font-size: 12px; /* Smaller font */
-  font-weight: bold;
-  padding: 8px 16px; /* Reduced padding for smaller size */
-  border: 2px solid transparent;
-  border-radius: 50px; /* Round the edges for a pill shape */
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s ease;
-}
-
-.social-button:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-  transition: all 0.6s;
-  transform: translate(-50%, -50%) rotate(45deg);
-  z-index: 1;
-}
-
-.social-button:hover {
-  color: #fff;
-  transform: scale(1.1); /* Slight grow effect on hover */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-}
-
-.social-button:hover:before {
-  width: 0;
-  height: 0;
-}
-
-.social-button span {
-  z-index: 2;
-}
-
-.social-button:nth-child(1) {
-  background: linear-gradient(45deg, #0088cc, #006f99); /* Telegram Button */
-}
-
-.social-button:nth-child(2) {
-  background: linear-gradient(45deg, #ffbf00, #ff9f00); /* Dextools Button */
-}
-
-.social-button:nth-child(3) {
-  background: linear-gradient(45deg, #1DA1F2, #00b0e6); /* Twitter Button */
-}
-
-/* Glowing effect on hover */
-.social-button:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.5), 0 0 60px rgba(255, 0, 255, 0.7);
-}
-
-/* Button text styling */
-.social-button {
-  font-size: 12px;
-  font-family: 'Bungee Shade', sans-serif;
-  position: relative;
-}
-
-.social-button span {
-  position: relative;
-  z-index: 2; /* Ensure the text stays above all effects */
-}
-
-/* Hover animations for dynamic effect */
-@keyframes glowing {
-  0% {
-    box-shadow: 0 0 5px #1DA1F2, 0 0 10px #1DA1F2, 0 0 15px #1DA1F2;
-  }
-  50% {
-    box-shadow: 0 0 20px #1DA1F2, 0 0 30px #1DA1F2, 0 0 40px #1DA1F2;
-  }
-  100% {
-    box-shadow: 0 0 5px #1DA1F2, 0 0 10px #1DA1F2, 0 0 15px #1DA1F2;
-  }
-}
-
-.social-button:active {
-  animation: glowing 1.5s ease-in-out infinite;
+  gap: 30px; /* Increased space between buttons */
+  margin-top: 50px; /* Space above the buttons */
+  padding: 5px 0; /* Add vertical padding around the button group */
 }
 
 /* Mobile Button Adjustments */
@@ -354,75 +271,72 @@ a {
     gap: 8px; /* Even smaller gap between buttons */
   }
 }
-
-
+/* Base Button Styling */
 .button {
-  display: block;
-  width: 220px; /* Slightly wider for more visual impact */
-  margin: 15px auto; /* Center the buttons with more spacing */
-  height: 70px; /* Increase the height for a chunkier, retro feel */
-  line-height: 70px; /* Center the text vertically */
-  border: 2px solid #FF1493; /* Neon pink border for extra punch */
-  color: white;
-  font-weight: bold;
-  font-size: 30px; /* Larger font for readability */
-font-family: 'Bungee Shade', sans-serif;
-  text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FF1493, 0 0 30px #FF1493, 0 0 40px #00FFFF; /* Neon glow effect */
-  background: linear-gradient(145deg, #00FFC6, #FF1493); /* Vibrant gradient background */
-  border-radius: 10px; /* More rounded edges for retro-modern look */
-  cursor: pointer;
-  padding: 0 25px;
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
-  position: relative; /* Needed for glowing animations */
-  overflow: hidden; /* Prevents background animations from spilling out */
+    font-family: 'Press Start 2P', sans-serif; /* Retro font */
+    font-size: 16px; /* Base font size */
+    color: #FFFFFF;
+    background: #4B0082; /* Indigo background */
+    border: 4px solid #FF1493; /* Deep pink border */
+    padding: 10px 20px; /* Reduced padding */
+    margin: 10px auto; /* Center the button */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 6px #999; /* Adjusted shadow for reduced size */
+    transition: all 0.1s;
+    position: relative;
+    user-select: none;
 }
 
-/* Add hover effects */
+/* Hover and Active States */
 .button:hover {
-  background: linear-gradient(145deg, #FF1493, #00FFC6); /* Reverse the gradient on hover */
-  transform: scale(1.1); /* Slightly enlarge for feedback */
-  box-shadow: 0 0 20px #FF1493, 0 0 30px #00FFFF, 0 0 40px #FFFFFF; /* Enhanced neon glow */
+    background: #00B7FF; /* Sky blue on hover */
+    border-color: #FF4500; /* Orange red border on hover */
 }
 
-/* Add focus effects for accessibility */
-.button:focus {
-  outline: none;
-  box-shadow: 0 0 10px 2px #00FFFF, 0 0 20px 2px #FF1493; /* Glow effect for focus */
+.button:active {
+    box-shadow: 0 3px #666;
+    transform: translateY(3px);
 }
 
-
-.button:hover::before {
-  left: 100%; /* Move the shimmer effect across the button */
-  transition: 0.5s;
+.button:disabled {
+    background: #777;
+    border-color: #555;
+    color: #BBB;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: translateY(0);
 }
 
-/* Mobile-Specific Button Styling (with media queries) */
+/* Responsive Design for Smaller Screens */
 
-/* For screens up to 768px (tablets and mobile devices) */
-
-/* Make buttons and text larger on mobile */
+/* For tablets and small screens (up to 768px) */
 @media (max-width: 768px) {
-  .button {
-    font-size: 22px;
-    width: 90%;  /* Make buttons nearly full width */
-    height: 60px; /* Increase button height */
-  }
-
-  canvas {
-    height: 80%; /* Let the canvas take more height on mobile */
-  }
+    .button {
+        font-size: 14px; /* Slightly smaller font */
+        padding: 8px 16px; /* Reduced padding */
+        width: 80%; /* Buttons take 80% of the screen width */
+        height: auto; /* Adjust height dynamically */
+    }
+    canvas {
+        height: 75%; /* Adjust canvas height */
+    }
 }
 
 /* For very small screens (up to 480px) */
 @media (max-width: 480px) {
-  .button {
-    font-size: 24px;  /* Further increase font size for readability */
-    height: 70px;
-  }
-   canvas {
-    height: 70%; /* Optimize the canvas height for very small screens */
-  }
+    .button {
+        font-size: 12px; /* Further reduce font size for very small screens */
+        padding: 6px 12px; /* Smaller padding */
+        width: 90%; /* Buttons almost full width */
+        height: auto; /* Adjust height dynamically */
+    }
+    canvas {
+        height: 70%; /* Optimize canvas height */
+    }
 }
 
 /* Credits */
