@@ -150,32 +150,27 @@ a {
 #progress-bar {
   width: 200px;
 }
-/* Sound Icon */
 .sound {
-  display: block; /* Ensure the element is visible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 40px; /* Adjust this to make the icon wider */
-  height: 40px; /* Adjust this to make the icon taller */
+  width: 40px; /* Icon container width */
+  height: 40px; /* Icon container height */
   cursor: pointer;
   z-index: 3;
-  background-size: contain; /* Ensures the background image scales proportionally */
-  background-position: center;
-  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent; /* Remove background color */
+  color: #FFFFFF; /* Icon color */
+  font-size: 24px; /* Icon size */
+  transition: transform 0.2s ease; /* Add hover effect */
 }
 
-
-.sound-on {
-  background-image: url('imgs/soundOn.png');
-  background-repeat: no-repeat;
+.sound:hover {
+  transform: scale(1.2); /* Slightly enlarge on hover */
 }
-
-.sound-off {
-  background-image: url('imgs/soundOff.png');
-  background-repeat: no-repeat;
-}
-
 /* Main Game Menu */
 #main {
 
@@ -318,7 +313,7 @@ a {
     .button {
         font-size: 14px; /* Slightly smaller font */
         padding: 8px 16px; /* Reduced padding */
-        width: 60%; /* Buttons take 80% of the screen width */
+        width: 80%; /* Buttons take 80% of the screen width */
         height: auto; /* Adjust height dynamically */
     }
     canvas {
@@ -331,7 +326,7 @@ a {
     .button {
         font-size: 12px; /* Further reduce font size for very small screens */
         padding: 6px 12px; /* Smaller padding */
-        width: 80%; /* Buttons almost full width */
+        width: 90%; /* Buttons almost full width */
         height: auto; /* Adjust height dynamically */
     }
     canvas {
@@ -355,19 +350,7 @@ a {
 
 }
 
-.artwork, .music, .developer {
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
 
-.artwork {
-  color: #fa8526;
-}
-.music {
-  color: #e6e71f;
-}
-.developer {
-  color: #13eb8a;
-}
 
 .back, .back:hover {
   margin-top: 10px;

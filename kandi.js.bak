@@ -1,7 +1,8 @@
 
 // Define the Google Apps Script Web App URL for leaderboard submission
 const webAppUrl = 'https://script.google.com/macros/s/AKfycbzKOdD7Y-A0GlKEiZTgARMhgAKDaJB08lBXQf2EMuc3Fyy9ZQwpXN8I066YitHrNyrq/exec';
-const webhookUrl = 'https://flowxo.com/hooks/a/82nmznmm';
+const webhookUrl = 'https://flowxo.com/hooks/a/gyxwke67';
+
 
 function submitScore(name, score) {
     // First, send the score to the Google Apps Script Web App
@@ -817,13 +818,12 @@ function animate() {
     updatePlayer();
     updateGround();
     updateEnemies();
-// Set font style for a Miami Vice 80s vibe
-ctx.font = 'bold 40px Verdana'; // Use a bold, clean font like Verdana
+ctx.font = 'bold 50px Trebuchet MS'; // Use Trebuchet MS for a modern, readable style
 ctx.fillStyle = '#FFFFFF'; // Set the font color to white
+ctx.textAlign = 'center'; // Align text horizontally to the center
+ctx.textBaseline = 'top'; // Align text vertically to the top
+ctx.fillText(score + 'm', canvas.width / 2, 20); // Middle-top positioning
 
-
-// Draw the score
-ctx.fillText('Distance: ' + score + 'm', canvas.width - 350, 60);
 
     // spawn a new Sprite
     if (ticker % Math.floor(platformWidth / player.speed) === 0) {
@@ -1052,22 +1052,26 @@ $(document).on('click', '.back-to-menu', function() {
 // Click handler for the "Sound" button
 $('.sound').click(function() {
     var $this = $(this);
+
     // sound off
     if ($this.hasClass('sound-on')) {
         $this.removeClass('sound-on').addClass('sound-off');
+        $this.html('<i class="fa-solid fa-volume-xmark fa-beat-fade"></i>'); // Update to sound-off icon
         playSound = false;
     }
     // sound on
     else {
         $this.removeClass('sound-off').addClass('sound-on');
+        $this.html('<i class="fa-solid fa-volume-high"></i>'); // Update to sound-on icon
         playSound = true;
     }
 
+    // Save state in localStorage
     if (canUseLocalStorage) {
         localStorage.setItem('kandi.playSound', playSound);
     }
 
-    // mute or unmute all sounds
+    // Mute or unmute all sounds
     for (var sound in assetLoader.sounds) {
         if (assetLoader.sounds.hasOwnProperty(sound)) {
             assetLoader.sounds[sound].muted = !playSound;
