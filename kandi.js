@@ -1,6 +1,6 @@
 
 // Define the Google Apps Script Web App URL for leaderboard submission
-const webAppUrl = 'https://script.google.com/macros/s/AKfycbzKOdD7Y-A0GlKEiZTgARMhgAKDaJB08lBXQf2EMuc3Fyy9ZQwpXN8I066YitHrNyrq/exec';
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbxOIV7MXvwQ5KYWwiX0v9UE1wRjL_kJpNEI13u5vhL_vTWFX14PMG-oZFUYt52QlD3e/exec';
 const webhookUrl = 'https://flowxo.com/hooks/a/gyxwke67';
 
 
