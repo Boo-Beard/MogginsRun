@@ -801,56 +801,72 @@ function spawnEnemySprites() {
 
   }
 }
+// Set the desired frame rate (e.g., 60 FPS)
+const FRAME_RATE = 60;
+const FRAME_DURATION = 1000 / FRAME_RATE; // Duration of one frame in milliseconds
+
+let lastFrameTime = 0; // Timestamp of the last frame
 
 /**
- * Game loop
+ * Game loop with frame rate cap
  */
-function animate() {
+function animate(timestamp) {
   if (!stop) {
-    requestAnimFrame( animate );
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Calculate the time elapsed since the last frame
+    const deltaTime = timestamp - lastFrameTime;
 
-    background.draw();
+    // Proceed only if enough time has elapsed to maintain the frame rate
+    if (deltaTime >= FRAME_DURATION) {
+      lastFrameTime = timestamp - (deltaTime % FRAME_DURATION); // Ensure consistent frame pacing
 
-    // update entities
-    updateWater();
-    updateEnvironment();
-    updatePlayer();
-    updateGround();
-    updateEnemies();
-ctx.font = 'bold 50px Comic Sans MS';
-ctx.fillStyle = '#FFFFFF'; // Set the font color to white
-ctx.textAlign = 'center'; // Align text horizontally to the center
-ctx.textBaseline = 'top'; // Align text vertically to the top
-ctx.fillText(score + 'm', canvas.width / 2, 20); // Middle-top positioning
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Draw the background and update game elements
+      background.draw();
+      updateWater();
+      updateEnvironment();
+      updatePlayer();
+      updateGround();
+      updateEnemies();
 
-    // spawn a new Sprite
-    if (ticker % Math.floor(platformWidth / player.speed) === 0) {
-      spawnSprites();	
-    }
+      // Draw the score
+      ctx.font = 'bold 50px Comic Sans MS';
+      ctx.fillStyle = '#FFFFFF';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(score + 'm', canvas.width / 2, 20);
 
-    // increase player speed only when player is jumping
-    if (ticker > (Math.floor(platformWidth / player.speed) * player.speed * 20) && player.dy !== 0) {
-      player.speed = bound(++player.speed, 0, 15);
-      player.walkAnim.frameSpeed = Math.floor(platformWidth / player.speed) - 1;
-
-      // reset ticker
-      ticker = 0;
-
-      // spawn a platform to fill in gap created by increasing player speed
-      if (gapLength === 0) {
-        var type = getType();
-        ground.push(new Sprite(
-          canvas.width + platformWidth % player.speed,
-          platformBase - platformHeight * platformSpacer,
-          type
-        ));
-        platformLength--;
+      // Spawn a new sprite at the correct interval
+      if (ticker % Math.floor(platformWidth / player.speed) === 0) {
+        spawnSprites();
       }
+
+      // Increase player speed when jumping
+      if (ticker > (Math.floor(platformWidth / player.speed) * player.speed * 20) && player.dy !== 0) {
+        player.speed = bound(++player.speed, 0, 15);
+        player.walkAnim.frameSpeed = Math.floor(platformWidth / player.speed) - 1;
+
+        // Reset ticker
+        ticker = 0;
+
+        // Spawn a platform to fill the gap created by increased speed
+        if (gapLength === 0) {
+          const type = getType();
+          ground.push(new Sprite(
+            canvas.width + platformWidth % player.speed,
+            platformBase - platformHeight * platformSpacer,
+            type
+          ));
+          platformLength--;
+        }
+      }
+
+      ticker++;
     }
 
-    ticker++;
+    // Request the next frame
+    requestAnimFrame(animate);
   }
 }
 
