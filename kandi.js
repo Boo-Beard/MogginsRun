@@ -832,7 +832,7 @@ function animate(timestamp) {
 
       // Draw the score
       ctx.font = 'bold 50px Comic Sans MS';
-      ctx.fillStyle = '#FFFFFF';
+      ctx.fillStyle = '#0af01d';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
       ctx.fillText(score + 'm', canvas.width / 2, 20);
