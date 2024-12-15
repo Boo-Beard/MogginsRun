@@ -414,6 +414,25 @@ a {
     font-size: 1.25rem;  /* Smaller font for small screens */
   }
 }
+.snowflake {
+  position: absolute;
+  z-index: 1000;
+  top: -40px; /* Start above the viewport */
+  color: white; /* Snowflake color */
+  font-size: 0.1em; /* Base size for the snowflake */
+  pointer-events: none; /* Prevent interaction */
+  opacity: 0.8; /* Slightly transparent */
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
 
 
 @media (max-width: 480px) {
