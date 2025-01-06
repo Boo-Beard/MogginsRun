@@ -1094,47 +1094,6 @@ $('.sound').click(function() {
         }
     }
 });
-// Number of snowflakes per batch (reduced amount)
-const SNOWFLAKE_COUNT = 2;
-
-// Function to create a snowflake
-function createSnowflake() {
-  const snowflake = document.createElement('div');
-  snowflake.classList.add('snowflake');
-  snowflake.textContent = '❄'; // Snowflake character
-
-  // Randomize the size and position
-  const size = Math.random() * 0.9 + 0.3; // Size between 0.3em and 1.5em
-  snowflake.style.fontSize = `${size}em`;
-
-  const left = Math.random() * 100; // Random horizontal position
-  snowflake.style.left = `${left}vw`;
-
-  // Randomize animation duration and delay
-  const duration = Math.random() * 6 + 4; // Duration between 4s and 10s (slower)
-  const delay = Math.random() * 10; // Delay between 0s and 10s
-  snowflake.style.animationDuration = `${duration}s`;
-  snowflake.style.animationDelay = `${delay}s`;
-
-  // Append to the body
-  document.body.appendChild(snowflake);
-
-  // Remove snowflake after animation ends
-  snowflake.addEventListener('animationend', () => {
-    snowflake.remove();
-  });
-}
-
-// Function to generate multiple snowflakes
-function generateSnowflakes() {
-  for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
-    createSnowflake();
-  }
-}
-
-// Generate snowflakes less frequently (every 2 seconds)
-setInterval(generateSnowflakes, 1000);
-
 
 // Click handler for the "Play" button
 $('.play').click(function() {
